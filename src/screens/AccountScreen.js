@@ -1,13 +1,13 @@
 import React from "react";
-import { View, StyleSheet, Text, Button } from "react-native";
+import { View, StyleSheet,TouchableOpacity } from "react-native";
+import { Text, Button } from "react-native-elements";
+import TopBar from "../components/TopBar";
 
 const AccountScreen = ({ navigation }) => {
   return (
-    <View>
-      <Text style={{ fontSize: 50 }}>Account Screen</Text>
-      <Button
-        title="Go to Signup"
-        onPress={() => navigation.navigate("loginFlow")}
+    <View style={styles.container}>
+      <TopBar text="Account Informations"
+      icon="person"
       />
     </View>
   );

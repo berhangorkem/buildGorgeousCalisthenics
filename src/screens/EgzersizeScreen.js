@@ -1,12 +1,20 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
+import TopBar from "../components/TopBar";
 
 const EgzersizeScreen = () => {
   return (
     <View>
-      <Text style={{ fontSize: 50 }}>Egzersize Screen</Text>
+      <TopBar
+      text="Egzersize Page"
+      icon="fitbit"
+      />
     </View>
   );
+};
+
+EgzersizeScreen.navigationOptions = {
+  headerShown: true,
 };
 
 const styles = StyleSheet.create({});
