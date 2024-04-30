@@ -6,13 +6,16 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 
 import AccountScreen from "./src/screens/AccountScreen";
 import CalculateScreen from "./src/screens/CalculateScreen";
+import DetailSignupScreen from "./src/screens/DetailSignupScreen";
 import EgzersizeScreen from "./src/screens/EgzersizeScreen";
 import SigninScreen from "./src/screens/SigninScreen";
 import SignupScreen from "./src/screens/SignupScreen";
 
+
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
     Signup:SignupScreen,
+    Detail:DetailSignupScreen,
     Signin:SigninScreen
   }),
   mainFlow: createMaterialBottomTabNavigator({
