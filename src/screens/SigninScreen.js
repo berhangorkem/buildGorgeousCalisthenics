@@ -5,9 +5,11 @@ import {
   KeyboardAvoidingView,
   ScrollView,
 } from "react-native";
-import { Text, Button, Input } from "react-native-elements";
+import { Text } from "react-native-elements";
 import Spacer from "../components/Spacer";
 import NavLink from "../components/NavLink";
+import InputContainer from "../components/InputContainer";
+import MainButton from "../components/MainButton";
 
 const SigninScreen = ({ navigation }) => {
   return (
@@ -16,21 +18,15 @@ const SigninScreen = ({ navigation }) => {
         <View style={styles.container}>
           <Spacer>
             <Text style={styles.header} h5>
-              Hey there,
+              Hey there
             </Text>
-            <Text style={styles.header} h3>
+            <Text style={styles.header} h4>
               Welcome Back
             </Text>
-          </Spacer>
-          <Spacer />
-          <Input label="Username" />
-          <Spacer />
-          <Input label="Password" />
-          <Spacer>
-            <Button
-              title="Sign In"
-              onPress={() => navigation.navigate("mainFlow")}
-            />
+            <Spacer />
+            <InputContainer label="Username" />
+            <InputContainer label="Password" />
+            <MainButton pageName="mainFlow" title="Sign In" navigation={navigation} />
           </Spacer>
           <NavLink
             routeName="Signup"

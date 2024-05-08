@@ -1,22 +1,25 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { Header } from "react-native-elements";
+import { Text } from "react-native-elements";
 
-const TopBar = ({text,icon}) => {
+const TopBar = ({text}) => {
   return (
-    <Header
-      placement="left"
-      leftComponent={{ icon: icon, color: "black" }}
-      centerComponent={{ text: text, style: { color: "black" } }}
-      rightComponent={{ icon: "menu", color: "black" }}
-      containerStyle={{
-        backgroundColor: 'white',
-        marginTop:30
-      }}
-    />
+    <View style={styles.backgroundStyle}>
+      <Text h5>{text}</Text>
+    </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  backgroundStyle: {
+    justifyContent:"center",
+    alignItems:"center",
+    height: 40,
+    marginTop: 40,
+    marginBottom:10,
+    borderBottomWidth:1
+  },
+
+});
 
 export default TopBar;

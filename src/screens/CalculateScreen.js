@@ -7,7 +7,6 @@ const CalculateScreen = () => {
     <View>
       <TopBar 
       text="Calories Calculate Page"
-      icon="calculate"
       />
     </View>
   );

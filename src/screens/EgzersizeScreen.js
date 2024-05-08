@@ -7,7 +7,6 @@ const EgzersizeScreen = () => {
     <View>
       <TopBar
       text="Egzersize Page"
-      icon="fitbit"
       />
     </View>
   );
