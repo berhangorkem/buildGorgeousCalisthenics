@@ -1,37 +1,54 @@
 import React from "react";
-import { View, StyleSheet,TouchableOpacity } from "react-native";
-import { Text, Button } from "react-native-elements";
+import { View, StyleSheet } from "react-native";
+import { Text,Card } from "react-native-elements";
 import Spacer from "../components/Spacer";
 import TopBar from "../components/TopBar";
 
-const AccountScreen = ({ navigation }) => {
+const AccountScreen = ({ user }) => {
+  const userInfo = [
+    { label: "Username", value:"berhangorkem" },
+    { label: "E-Mail", value: "berhangorkem@gmail.com" },
+    { label: "Age", value:"21" },
+    { label: "Size", value:"180" },
+    { label: "Weight", value:"95" },
+    { label: "Gender", value:"male" },
+  ];
+
   return (
     <View>
-      <TopBar text="Account Informations"
-      />
-      <View style={styles.container}>
-        <Spacer/>
-        <Text h3>Personal Informations</Text>
-        <Spacer/>
-        <Text>Age:</Text>
-        <Spacer/>
-        <Text>Size:</Text>
-        <Spacer/>
-        <Text>Weight:</Text>
-        <Spacer/>
-        <Text>Gender:</Text>
-      </View>
-      <View>
-        
-      </View>
+      <TopBar text="Account Information" />
+      <Card containerStyle={styles.card}>
+        <Card.Title style={styles.infoBoxTitle}>
+          Personal Information
+        </Card.Title>
+        <Card.Divider />
+        {userInfo.map((item) => (
+          <View style={styles.infoRow} key={item.label}>
+            <Text style={styles.infoLabel}>{item.label}: </Text>
+            <Text>{item.value}</Text>
+          </View>
+        ))}
+      </Card>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container:{
-    marginHorizontal:10
-  }
+  infoBoxTitle: {
+    textAlign: "left",
+    marginBottom: 5,
+  },
+  infoRow: {
+    flexDirection: "row",
+    alignItems: "center", // Align items vertically
+  },
+  card: {
+    borderRadius: 10, // Add custom card styling (optional)
+    padding: 15, // Add padding for better spacing
+  },
+  infoLabel: {
+    fontWeight: "bold", // Style label text (optional)
+  },
 });
 
 export default AccountScreen;

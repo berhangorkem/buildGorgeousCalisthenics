@@ -10,7 +10,7 @@ import Spacer from "../components/Spacer";
 import MainButton from "../components/MainButton";
 import InputContainer from "../components/InputContainer";
 const DetailSignupScreen = ({ navigation }) => {
-  const img = require("../../assets/authPhoto/loginFlow-banner.jpg");
+  const img = require("../../assets/banners/loginFlow-banner.jpg");
   return (
     <ScrollView>
       <ImageBackground source={img} resizeMode="cover" style={{ flex: 1 }}>

@@ -6,7 +6,7 @@ import NavLink from "../components/NavLink";
 import InputContainer from "../components/InputContainer";
 import MainButton from "../components/MainButton";
 const SignupScreen = ({ navigation }) => {
-  const img = require("../../assets/authPhoto/loginFlow-banner.jpg");
+  const img = require("../../assets/banners/loginFlow-banner.jpg");
   return (
     <ScrollView>
       <ImageBackground source={img} resizeMode="cover" style={{ flex: 1 }}>

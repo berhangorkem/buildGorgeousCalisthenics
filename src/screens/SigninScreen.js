@@ -11,7 +11,7 @@ import NavLink from "../components/NavLink";
 import InputContainer from "../components/InputContainer";
 import MainButton from "../components/MainButton";
 const SigninScreen = ({ navigation }) => {
-  const img = require("../../assets/authPhoto/loginFlow-banner.jpg");
+  const img = require("../../assets/banners/loginFlow-banner.jpg");
 
   return (
     <ScrollView>
