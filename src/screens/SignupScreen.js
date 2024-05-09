@@ -2,6 +2,7 @@ import React from "react";
 import {
   View,
   StyleSheet,
+  ImageBackground,
   KeyboardAvoidingView,
   ScrollView,
 } from "react-native";
@@ -11,10 +12,10 @@ import NavLink from "../components/NavLink";
 import InputContainer from "../components/InputContainer";
 import MainButton from "../components/MainButton";
 const SignupScreen = ({ navigation }) => {
+  const img = require("../../assets/authPhoto/13.jpg");
   return (
-    <KeyboardAvoidingView style={{ flex: 1 }}>
-      <ScrollView>
-        <View style={styles.container}>
+    <ImageBackground source={img} resizeMode="cover" style={{ flex: 1 }}>
+      <View style={styles.container}>
           <Spacer>
             <Text style={styles.header} h5>
               Hey there
@@ -31,11 +32,12 @@ const SignupScreen = ({ navigation }) => {
           </Spacer>
           <NavLink
             routeName="Signin"
-            text="Already have an account? Sign in instead"
+            text1="Already have an account? "
+            text2="Sign In"
           />
         </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+    </ImageBackground>
+      
   );
 };
 
@@ -51,6 +53,7 @@ const styles = StyleSheet.create({
   },
   header: {
     alignSelf: "center",
+    color:"white"
   },
 });
 

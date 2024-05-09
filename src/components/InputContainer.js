@@ -7,12 +7,12 @@ const InputContainer = ({label}) => {
   inputContainerStyle={{
     borderWidth: 1,
     borderRadius: 10,
-    borderColor:"black",
-    color:"black"
+    borderColor:"white",
+    color:"white"
   }}
   labelStyle={{
     fontSize: 12,
-    color:"black"
+    color:"white"
   }}
 />;
 };
