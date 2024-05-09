@@ -1,6 +1,6 @@
 import React from "react";
 import { Header, Icon } from "react-native-elements";
-import MenuIcon from "./LogoutIcon"
+import LogoutIcon from "./LogoutIcon"
 
 const TopBar = ({ text }) => {
   return (
@@ -14,7 +14,7 @@ const TopBar = ({ text }) => {
         <Icon name="leaf" type="material-community" color="black" />
       }
       centerComponent={{ text: text, style: { color: "black" } }}
-      rightComponent={<MenuIcon/>}
+      rightComponent={<LogoutIcon/>}
     />
   );
 };

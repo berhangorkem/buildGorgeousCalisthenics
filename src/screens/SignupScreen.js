@@ -1,21 +1,16 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  ImageBackground,
-  KeyboardAvoidingView,
-  ScrollView,
-} from "react-native";
+import { View, StyleSheet, ImageBackground, ScrollView } from "react-native";
 import { Text } from "react-native-elements";
 import Spacer from "../components/Spacer";
 import NavLink from "../components/NavLink";
 import InputContainer from "../components/InputContainer";
 import MainButton from "../components/MainButton";
 const SignupScreen = ({ navigation }) => {
-  const img = require("../../assets/authPhoto/13.jpg");
+  const img = require("../../assets/authPhoto/loginFlow-banner.jpg");
   return (
-    <ImageBackground source={img} resizeMode="cover" style={{ flex: 1 }}>
-      <View style={styles.container}>
+    <ScrollView>
+      <ImageBackground source={img} resizeMode="cover" style={{ flex: 1 }}>
+        <View style={styles.container}>
           <Spacer>
             <Text style={styles.header} h5>
               Hey there
@@ -28,7 +23,11 @@ const SignupScreen = ({ navigation }) => {
             <InputContainer label="Phone Number" />
             <InputContainer label="E-Mail" />
             <InputContainer label="Password" />
-            <MainButton pageName="Detail" title="Sign Up" navigation={navigation}/>
+            <MainButton
+              pageName="Detail"
+              title="Sign Up"
+              navigation={navigation}
+            />
           </Spacer>
           <NavLink
             routeName="Signin"
@@ -36,8 +35,8 @@ const SignupScreen = ({ navigation }) => {
             text2="Sign In"
           />
         </View>
-    </ImageBackground>
-      
+      </ImageBackground>
+    </ScrollView>
   );
 };
 
@@ -49,11 +48,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    marginTop: 80,
+    marginVertical: 144.5,
   },
   header: {
     alignSelf: "center",
-    color:"white"
+    color: "white",
   },
 });
 

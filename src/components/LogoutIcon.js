@@ -6,7 +6,7 @@ import { withNavigation } from "react-navigation";
 const LogoutIcon = ({navigation}) => {
   return (
     <TouchableOpacity onPress={() => navigation.navigate('loginFlow')} >
-        <Icon name="logout" type="material-community" color="black"/>
+        <Icon name="power" type="material-community" color="black"/>
     </TouchableOpacity>
   );
 };
