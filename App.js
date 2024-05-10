@@ -1,5 +1,3 @@
-import React from "react";
-
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
@@ -11,18 +9,25 @@ import EgzersizeScreen from "./src/screens/EgzersizeScreen";
 import SigninScreen from "./src/screens/SigninScreen";
 import SignupScreen from "./src/screens/SignupScreen";
 
-
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
-    Signup:SignupScreen,
-    Detail:DetailSignupScreen,
-    Signin:SigninScreen
+    Signup: SignupScreen,
+    Detail: DetailSignupScreen,
+    Signin: SigninScreen,
   }),
-  mainFlow: createMaterialBottomTabNavigator({
-    Account: AccountScreen,
-    Calculate:CalculateScreen,
-    Egzersize:EgzersizeScreen
-  })
-})
+  mainFlow: createMaterialBottomTabNavigator(
+    {
+      Account: AccountScreen,
+      Calculate: CalculateScreen,
+      Egzersize: EgzersizeScreen,
+    },
+    {
+      initialRouteName: "Account",
+      activeColor: "orange",
+      inactiveColor: "black",
+      barStyle: { backgroundColor: "white" },
+    }
+  ),
+});
 
-export default createAppContainer(switchNavigator)
+export default createAppContainer(switchNavigator);

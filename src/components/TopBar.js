@@ -6,7 +6,7 @@ const TopBar = ({ text }) => {
   return (
     <Header
       containerStyle={{
-        backgroundColor: "transparent",
+        backgroundColor: "white",
         justifyContent: "space-around",
         borderBottomWidth:1,
         borderBottomColor:"black",
