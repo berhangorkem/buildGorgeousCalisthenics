@@ -15,7 +15,7 @@ const TopBar = ({ text }) => {
       leftComponent={
         <Icon name="leaf" type="material-community" color="black" />
       }
-      centerComponent={{ text: text, style: { color: "black" } }}
+      centerComponent={{ text: text, style: { color: "black",fontSize:20 } }}
       rightComponent={text === "Account Information" ? <LogoutIcon /> : null}
     />
   );

@@ -12,6 +12,24 @@ const AccountScreen = () => {
     { label: "Weight", value: "95" },
     { label: "Gender", value: "male" },
   ];
+  const dailyCalories = [
+    { label: "Mon", value: 1300 },
+    { label: "Tue", value: 1100 },
+    { label: "Wed", value: 1400 },
+    { label: "Thu", value: 1900 },
+    { label: "Fri", value: 2000 },
+    { label: "Sat", value: 1919 },
+    { label: "Sun", value: 1453 },
+  ];
+  const dailyActivities = [
+    { label: "Mon", value: "PULL"},
+    { label: "Tue", value: "PUSH" },
+    { label: "Wed", value: "LEG" },
+    { label: "Thu", value: "OFF" },
+    { label: "Fri", value: "CARDİO" },
+    { label: "Sat", value: "FULLBODY" },
+    { label: "Sun", value: "OFF" },
+  ];
 
   return (
     <View>
@@ -22,6 +40,26 @@ const AccountScreen = () => {
         </Card.Title>
         <Card.Divider />
         {userInfo.map((item) => (
+          <View style={styles.infoRow} key={item.label}>
+            <Text style={styles.infoLabel}>{item.label}: </Text>
+            <Text>{item.value}</Text>
+          </View>
+        ))}
+      </Card>
+      <Card containerStyle={styles.card}>
+        <Card.Title style={styles.infoBoxTitle}>Daily Calories</Card.Title>
+        <Card.Divider />
+        {dailyCalories.map((item) => (
+          <View style={styles.infoRow} key={item.label}>
+            <Text style={styles.infoLabel}>{item.label}: </Text>
+            <Text>{item.value}</Text>
+          </View>
+        ))}
+      </Card>
+      <Card containerStyle={styles.card}>
+        <Card.Title style={styles.infoBoxTitle}>Daily Calories</Card.Title>
+        <Card.Divider />
+        {dailyActivities.map((item) => (
           <View style={styles.infoRow} key={item.label}>
             <Text style={styles.infoLabel}>{item.label}: </Text>
             <Text>{item.value}</Text>
