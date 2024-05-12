@@ -57,7 +57,7 @@ const AccountScreen = () => {
         ))}
       </Card>
       <Card containerStyle={styles.card}>
-        <Card.Title style={styles.infoBoxTitle}>Daily Calories</Card.Title>
+        <Card.Title style={styles.infoBoxTitle}>Daily Activities</Card.Title>
         <Card.Divider />
         {dailyActivities.map((item) => (
           <View style={styles.infoRow} key={item.label}>

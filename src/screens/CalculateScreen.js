@@ -9,10 +9,14 @@ import {
 import { Icon } from "react-native-elements";
 import TopBar from "../components/TopBar";
 import ProgressBar from "../components/ProgressBar";
-import FoodCard from "../components/FoodCard";
-import Spacer from "../components/Spacer";
+import MealCard from "../components/MealCard";
 
 const CalculateScreen = () => {
+
+  const handleFoodSelect = (selectedFood) => {
+    console.log("Selected food in MealCard:", selectedFood);
+  };
+
   const value = 2100;
   const limit = 2400;
 
@@ -21,10 +25,10 @@ const CalculateScreen = () => {
       <View>
         <TopBar text="Calories Calculate Page" />
         <ProgressBar value={value} limit={limit} />
-        <FoodCard title="Breakfast" />
-        <FoodCard title="Lunch" />
-        {/* <FoodCard title="Dinner" />
-        <FoodCard title="Snacks" /> */}
+        <MealCard title="Breakfast" onFoodSelect={handleFoodSelect} />
+        {/* <MealCard title="Lunch" />
+        <MealCard title="Dinner" />
+        <MealCard title="Snacks" /> */}
       </View>
     </ScrollView>
   );
