@@ -20,7 +20,7 @@ const MealCard = ({ title, onFoodSelect }) => {
     const existingFoodIndex = updatedSelectedFoods.findIndex(
       (food) => food.id === selectedFoodItem.id
     );
-  
+
     if (existingFoodIndex !== -1) {
       updatedSelectedFoods[existingFoodIndex].service +=
         selectedFoodItem.service;
@@ -29,11 +29,14 @@ const MealCard = ({ title, onFoodSelect }) => {
     } else {
       const initialCalories =
         selectedFoodItem.calories * (selectedFoodItem.service || 1);
-      updatedSelectedFoods.push({ ...selectedFoodItem, calories: initialCalories });
+      updatedSelectedFoods.push({
+        ...selectedFoodItem,
+        calories: initialCalories,
+      });
     }
     // setState fonksiyonunu kullanarak state güncellemelerini yapın
     setSelectedFoods(updatedSelectedFoods);
-  
+
     // State güncellemelerinin tamamlanmasını bekleyin ve ardından işlemleri gerçekleştirin
     setTimeout(() => {
       const newTotalCalories = updatedSelectedFoods.reduce(
@@ -46,7 +49,6 @@ const MealCard = ({ title, onFoodSelect }) => {
       // result değerini kullanabilirsiniz, eğer gerekliyse
     }, 0);
   };
-  
 
   const handleRemoveFood = (food) => {
     setFoodToRemove(food);
@@ -61,36 +63,38 @@ const MealCard = ({ title, onFoodSelect }) => {
   };
 
   const removeConfirmedFood = (food) => {
-  const updatedSelectedFoods = [...selectedFoods];
-  const foodIndex = updatedSelectedFoods.findIndex((f) => f === food);
-
-  if (foodIndex !== -1) {
-    if (updatedSelectedFoods[foodIndex].service > 1) {
-      // If there are more than 1 service, reduce the service count by 1
-      updatedSelectedFoods[foodIndex].service -= 1;
-      // Reduce calories by the amount equivalent to 1 service
-      updatedSelectedFoods[foodIndex].calories -= food.calories;
-    } else {
-      // If there is only 1 service, remove the food item from the list
-      updatedSelectedFoods.splice(foodIndex, 1);
+    const updatedSelectedFoods = [...selectedFoods];
+    const foodIndex = updatedSelectedFoods.findIndex((f) => f === food);
+  
+    if (foodIndex !== -1) {
+      if (updatedSelectedFoods[foodIndex].service > 1) {
+        // Calculate calories per service
+        const caloriesPerService = food.calories / updatedSelectedFoods[foodIndex].service;
+  
+        // Reduce service count and calories by 1 service
+        updatedSelectedFoods[foodIndex].service -= 1;
+        updatedSelectedFoods[foodIndex].calories -= caloriesPerService;
+      } else {
+        // If there is only 1 service, remove the food item from the list
+        updatedSelectedFoods.splice(foodIndex, 1);
+      }
+  
+      setSelectedFoods(updatedSelectedFoods);
+  
+      // Calculate total calories (same as before)
+      const newTotalCalories = updatedSelectedFoods.reduce(
+        (total, f) => total + f.calories,
+        0
+      );
+      setTotalCalories(newTotalCalories);
+  
+      if (onFoodSelect) {
+        onFoodSelect(newTotalCalories);
+      }
     }
-
-    setSelectedFoods(updatedSelectedFoods);
-
-    // Calculate total calories
-    const newTotalCalories = updatedSelectedFoods.reduce(
-      (total, f) => total + f.calories,
-      0
-    );
-    setTotalCalories(newTotalCalories);
-
-    if (onFoodSelect) {
-      onFoodSelect(newTotalCalories);
-    }
-  }
-  setFoodToRemove(null);
-};
-
+    setFoodToRemove(null);
+  };
+  
 
   return (
     <Card
