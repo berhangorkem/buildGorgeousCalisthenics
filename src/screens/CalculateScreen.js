@@ -10,19 +10,53 @@ import ProgressBar from "../components/ProgressBar";
 import MealCard from "../components/MealCard";
 
 const CalculateScreen = () => {
-  const [value, setValue] = useState(0);
+  const [breakfastValue, setBreakfastValue] = useState(0);
+  const [lunchValue, setLunchValue] = useState(0);
+  const [dinnerValue, setDinnerValue] = useState(0);
+  const [snacksValue, setSnacksValue] = useState(0);
+  const [totalCalories, setTotalCalories] = useState(0);
   const limit = 2400;
-  const handleFoodSelect = (newTotalCalories) => {
-    setValue(newTotalCalories);
+
+  const handleFoodSelect = (meal, newTotalCalories) => {
+    if (meal === "breakfast") {
+      setBreakfastValue((prevValue) => prevValue + newTotalCalories);
+    } else if (meal === "lunch") {
+      setLunchValue((prevValue) => prevValue + newTotalCalories);
+    } else if (meal === "dinner") {
+      setDinnerValue((prevValue) => prevValue + newTotalCalories);
+    } else if (meal === "snacks") {
+      setSnacksValue((prevValue) => prevValue + newTotalCalories);
+    }
+
+    const totalCalories = breakfastValue + lunchValue + dinnerValue + snacksValue + newTotalCalories;
+    setTotalCalories(totalCalories);
   };
 
   return (
     <ScrollView>
       <View>
         <TopBar text="Calories Calculate Page" />
-        <ProgressBar value={value} limit={limit} />
-        <MealCard title="Breakfast" onFoodSelect={handleFoodSelect} />
-        <MealCard title="Lunch" onFoodSelect={handleFoodSelect} />
+        <ProgressBar value={breakfastValue + lunchValue + dinnerValue + snacksValue} limit={limit} />
+        <MealCard
+          title="Breakfast"
+          onFoodSelect={(newTotalCalories) => handleFoodSelect("breakfast", newTotalCalories)}
+          updateTotalCalories={setBreakfastValue}
+        />
+        <MealCard
+          title="Lunch"
+          onFoodSelect={(newTotalCalories) => handleFoodSelect("lunch", newTotalCalories)}
+          updateTotalCalories={setLunchValue}
+        />
+        {/* <MealCard
+          title="Dinner"
+          onFoodSelect={(newTotalCalories) => handleFoodSelect("dinner", newTotalCalories)}
+          updateTotalCalories={setDinnerValue}
+        />
+        <MealCard
+          title="Snacks"
+          onFoodSelect={(newTotalCalories) => handleFoodSelect("snacks", newTotalCalories)}
+          updateTotalCalories={setSnacksValue}
+        /> */}
       </View>
     </ScrollView>
   );
@@ -30,9 +64,7 @@ const CalculateScreen = () => {
 
 CalculateScreen.navigationOptions = {
   headerShown: null,
-  tabBarIcon: (
-    { focused } 
-  ) => (
+  tabBarIcon: ({ focused }) => (
     <Icon
       name="silverware-fork-knife"
       type="material-community"

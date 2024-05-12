@@ -4,7 +4,7 @@ import { Card, Icon, Text, Button } from "react-native-elements";
 import FoodCard from "./FoodCard"; // Replace with your FoodCard component path
 import FoodListOverlay from "./FoodListOverlay"; // Replace with your FoodListOverlay component path
 
-const MealCard = ({ title, onFoodSelect }) => {
+const MealCard = ({ title, onFoodSelect, updateTotalCalories }) => {
   const [isVisible, setVisible] = useState(false);
   const [selectedFoods, setSelectedFoods] = useState([]);
   const [foodToRemove, setFoodToRemove] = useState(null);
@@ -15,7 +15,6 @@ const MealCard = ({ title, onFoodSelect }) => {
   };
 
   const handleFoodSelection = (selectedFoodItem) => {
-    // State güncellemeleri asenkron olduğu için güncel selectedFoods değerini kullanın
     const updatedSelectedFoods = [...selectedFoods];
     const existingFoodIndex = updatedSelectedFoods.findIndex(
       (food) => food.id === selectedFoodItem.id
@@ -34,10 +33,8 @@ const MealCard = ({ title, onFoodSelect }) => {
         calories: initialCalories,
       });
     }
-    // setState fonksiyonunu kullanarak state güncellemelerini yapın
     setSelectedFoods(updatedSelectedFoods);
 
-    // State güncellemelerinin tamamlanmasını bekleyin ve ardından işlemleri gerçekleştirin
     setTimeout(() => {
       const newTotalCalories = updatedSelectedFoods.reduce(
         (total, food) => total + food.calories,
@@ -46,7 +43,9 @@ const MealCard = ({ title, onFoodSelect }) => {
       setTotalCalories(newTotalCalories);
       setVisible(false);
       const result = onFoodSelect && onFoodSelect(newTotalCalories);
-      // result değerini kullanabilirsiniz, eğer gerekliyse
+      if (updateTotalCalories) {
+        updateTotalCalories(newTotalCalories); // Yeni fonksiyonu çağır
+      }
     }, 0);
   };
 
@@ -65,33 +64,31 @@ const MealCard = ({ title, onFoodSelect }) => {
   const removeConfirmedFood = (food) => {
     const updatedSelectedFoods = [...selectedFoods];
     const foodIndex = updatedSelectedFoods.findIndex((f) => f === food);
-  
+
     if (foodIndex !== -1) {
       if (updatedSelectedFoods[foodIndex].service > 1) {
-        // Calculate calories per service
         const caloriesPerService = food.calories / updatedSelectedFoods[foodIndex].service;
-  
-        // Reduce service count and calories by 1 service
+
         updatedSelectedFoods[foodIndex].service -= 1;
         updatedSelectedFoods[foodIndex].calories -= caloriesPerService;
       } else {
-        // If there is only 1 service, remove the food item from the list
         updatedSelectedFoods.splice(foodIndex, 1);
       }
-  
+
       setSelectedFoods(updatedSelectedFoods);
-  
-      // Calculate total calories (same as before)
-      const newTotalCalories = updatedSelectedFoods.reduce(
-        (total, f) => total + f.calories,
-        0
-      );
+
+      const newTotalCalories = updatedSelectedFoods.reduce((total, f) => total + f.calories, 0);
       setTotalCalories(newTotalCalories);
-  
+
       if (onFoodSelect) {
         onFoodSelect(newTotalCalories);
       }
+
+      if (updateTotalCalories) {
+        updateTotalCalories(newTotalCalories);
+      }
     }
+
     setFoodToRemove(null);
   };
   
@@ -119,11 +116,11 @@ const MealCard = ({ title, onFoodSelect }) => {
           </TouchableOpacity>
         </View>
       ))}
-      <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+      <Text style={{ fontSize: 14, fontWeight: "bold",marginVertical:10 }}>
         Toplam Kalori: {totalCalories}
       </Text>
       <Button
-        buttonStyle={{ backgroundColor: "#0000FF", padding: 15 }}
+        buttonStyle={{ backgroundColor: "#0000FF", padding: 15,borderRadius:20,marginLeft:"auto" }}
         title="Gıda Ekle"
         onPress={toggleOverlay}
       />
