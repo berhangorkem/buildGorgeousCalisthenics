@@ -4,11 +4,11 @@ import { Card, Icon, Text, Button } from "react-native-elements";
 import FoodCard from "./FoodCard"; // Replace with your FoodCard component path
 import FoodListOverlay from "./FoodListOverlay"; // Replace with your FoodListOverlay component path
 
-const MealCard = ({ title, onFoodSelect, onTotalCaloriesChange }) => {
+const MealCard = ({ title, onFoodSelect }) => {
   const [isVisible, setVisible] = useState(false);
-  const [selectedFoods, setSelectedFoods] = useState([]); // Array to store selected foods
+  const [selectedFoods, setSelectedFoods] = useState([]);
   const [foodToRemove, setFoodToRemove] = useState(null);
-  const [totalCalories, setTotalCalories] = useState(0); // State for total calories
+  const [totalCalories, setTotalCalories] = useState(0); 
 
   const toggleOverlay = () => {
     setVisible(!isVisible);
@@ -18,10 +18,11 @@ const MealCard = ({ title, onFoodSelect, onTotalCaloriesChange }) => {
     setSelectedFoods([...selectedFoods, selectedFoodItem]);
     const newTotalCalories = totalCalories + selectedFoodItem.calories;
     setTotalCalories(newTotalCalories);
-    setVisible(false); // Close overlay after selection
-    onFoodSelect && onFoodSelect(selectedFoods); // Optional callback for parent (pass all selections)
-    // Update total calories in parent component (if onTotalCaloriesChange prop exists)
-    onTotalCaloriesChange && onTotalCaloriesChange(newTotalCalories);
+    setVisible(false); 
+    onFoodSelect && onFoodSelect(selectedFoods);
+    if (onFoodSelect) {
+      onFoodSelect(newTotalCalories);
+    }
   };
 
   const handleRemoveFood = (food) => {
@@ -41,8 +42,9 @@ const MealCard = ({ title, onFoodSelect, onTotalCaloriesChange }) => {
     const newTotalCalories = totalCalories - food.calories;
     setTotalCalories(newTotalCalories);
     setFoodToRemove(null);
-    // Update total calories in parent component after removal
-    onTotalCaloriesChange && onTotalCaloriesChange(newTotalCalories);
+    if (onFoodSelect) {
+      onFoodSelect(newTotalCalories); 
+    }
   };
 
   return (
@@ -79,7 +81,7 @@ const MealCard = ({ title, onFoodSelect, onTotalCaloriesChange }) => {
         <FoodListOverlay
           isVisible={isVisible}
           toggleOverlay={toggleOverlay}
-          onFoodSelect={handleFoodSelection} // Pass handleFoodSelection for selection handling
+          onFoodSelect={handleFoodSelection}
         />
       )}
     </Card>

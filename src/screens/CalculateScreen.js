@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
-  Text,
   ScrollView,
-  KeyboardAvoidingView,
 } from "react-native";
 import { Icon } from "react-native-elements";
 import TopBar from "../components/TopBar";
@@ -12,13 +10,11 @@ import ProgressBar from "../components/ProgressBar";
 import MealCard from "../components/MealCard";
 
 const CalculateScreen = () => {
-
-  const handleFoodSelect = (selectedFood) => {
-    console.log("Selected food in MealCard:", selectedFood);
-  };
-
-  const value = 2100;
+  const [value, setValue] = useState(0);
   const limit = 2400;
+  const handleFoodSelect = (newTotalCalories) => {
+    setValue(newTotalCalories);
+  };
 
   return (
     <ScrollView>
@@ -37,7 +33,7 @@ const CalculateScreen = () => {
 CalculateScreen.navigationOptions = {
   headerShown: null,
   tabBarIcon: (
-    { focused } // Dynamic icon color based on state
+    { focused } 
   ) => (
     <Icon
       name="silverware-fork-knife"
