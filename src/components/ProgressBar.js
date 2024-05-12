@@ -7,7 +7,7 @@ const ProgressBar = ({ value, limit }) => {
   const diff = limit - value;
 
   const getDiffColor = () => {
-    return diff < 0 ? "red" : "black";
+    return diff < 0 ? "red" : "green";
   };
 
   return (

@@ -22,9 +22,7 @@ const CalculateScreen = () => {
         <TopBar text="Calories Calculate Page" />
         <ProgressBar value={value} limit={limit} />
         <MealCard title="Breakfast" onFoodSelect={handleFoodSelect} />
-        <MealCard title="Lunch" />
-        {/* <MealCard title="Dinner" />
-        <MealCard title="Snacks" /> */}
+        <MealCard title="Lunch" onFoodSelect={handleFoodSelect} />
       </View>
     </ScrollView>
   );

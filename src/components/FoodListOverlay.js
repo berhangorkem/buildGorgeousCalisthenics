@@ -6,8 +6,10 @@ const OverlayFoodCard = ({ name, icon, calories,service }) => (
   <View style={styles.foodCard}>
     <Icon name={icon} type="material-community" size={30} />
     <Text style={styles.foodName}>{name}</Text>
-    <Text style={styles.foodCalories}>{service} Service</Text>
-    <Text style={styles.foodCalories}>{calories} Calories</Text>
+    <View style={styles.serviceAndCaloriesContainer}>
+      <Text style={styles.serviceText}>{service} Service</Text>
+      <Text style={styles.foodCalories}>{calories} Calories</Text>
+    </View>
   </View>
 );
 
@@ -67,10 +69,18 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     fontSize: 16,
   },
-  foodCalories: {
+  serviceAndCaloriesContainer: {
+    flexDirection: "row",
     marginLeft: "auto",
-    fontSize: 14,
+  },
+  foodCalories: {
+    fontSize: 10,
     color: "#777",
+  },
+  serviceText: {
+    fontSize: 10,
+    color: "#999",
+    marginRight:15
   },
 });
 

@@ -11,8 +11,8 @@ const FoodCard = ({ icon, name, calories, service }) => {
       </View>
       <View style={styles.serviceContainer}>
         <Text style={styles.serviceText}>{service} Service</Text>
+        <Text style={styles.calories}>{calories} Calories</Text>
       </View>
-      <Text style={styles.calories}>{calories} Calories</Text>
     </View>
   );
 };
@@ -33,16 +33,19 @@ const styles = StyleSheet.create({
   foodInfo: {
     marginLeft: 10,
   },
+  serviceText: {
+    fontSize: 10,
+    color: "#999",
+  },
   calories: {
-    flex: 1,
     textAlign: "right",
-    fontSize: 12,
+    fontSize: 10,
     color:
       "radial-gradient(circle, rgba(69,255,0,1) 0%, rgba(0,240,255,1) 100%)",
   },
   serviceContainer: {
-    marginTop: 2,
-    marginLeft: 10,
+    alignItems:"center",
+    marginLeft: "auto",
   },
   serviceText: {
     fontSize: 10,
