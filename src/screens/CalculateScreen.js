@@ -34,7 +34,7 @@ const CalculateScreen = () => {
 
   return (
     <ScrollView>
-      <View>
+      <View style={{marginBottom:10}}>
         <TopBar text="Calories Calculate Page" />
         <ProgressBar value={breakfastValue + lunchValue + dinnerValue + snacksValue} limit={limit} />
         <MealCard
@@ -47,7 +47,7 @@ const CalculateScreen = () => {
           onFoodSelect={(newTotalCalories) => handleFoodSelect("lunch", newTotalCalories)}
           updateTotalCalories={setLunchValue}
         />
-        {/* <MealCard
+        <MealCard
           title="Dinner"
           onFoodSelect={(newTotalCalories) => handleFoodSelect("dinner", newTotalCalories)}
           updateTotalCalories={setDinnerValue}
@@ -56,7 +56,7 @@ const CalculateScreen = () => {
           title="Snacks"
           onFoodSelect={(newTotalCalories) => handleFoodSelect("snacks", newTotalCalories)}
           updateTotalCalories={setSnacksValue}
-        /> */}
+        />
       </View>
     </ScrollView>
   );
