@@ -16,6 +16,7 @@ const SigninScreen = ({ navigation }) => {
   return (
     <ScrollView>
       <ImageBackground source={img} resizeMode="cover" style={{ flex: 1 }}>
+      <View style={styles.overlay} />
         <View style={styles.container}>
           <Spacer>
             <Text style={styles.header} h5>
@@ -51,11 +52,15 @@ SigninScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginVertical:228.5
+    marginVertical:245
   },
   header: {
     alignSelf: "center",
-    color: "white",
+    color: "#CCCCCC",
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Siyah ve yarı saydam
   },
 });
 

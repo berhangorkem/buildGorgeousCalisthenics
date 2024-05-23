@@ -16,7 +16,15 @@ const ProgressBar = ({ value, limit }) => {
         <Text style={styles.header}>Calories</Text>
       </View>
       <View style={[styles.progressBarContainer, { width: 330 }]}>
-        <View style={[styles.progressBar, { width: filledWidth }]} />
+        <View style={[styles.progressBar, { width: Math.min(filledWidth, limitPoint) }]} />
+        {filledWidth > limitPoint && (
+          <View
+            style={[
+              styles.exceededBar,
+              { left: limitPoint, width: filledWidth - limitPoint },
+            ]}
+          />
+        )}
         <View style={[styles.marker, { left: limitPoint }]} />
       </View>
       <View style={styles.textContainer}>
@@ -26,23 +34,11 @@ const ProgressBar = ({ value, limit }) => {
         </View>
         <View style={styles.textGroup}>
           <Text style={styles.title}>Food</Text>
-          <Text
-            style={[
-              styles.subtitle,
-              {
-                color:
-                  "radial-gradient(circle, rgba(69,255,0,1) 0%, rgba(0,240,255,1) 100%)",
-              },
-            ]}
-          >
-            {value}
-          </Text>
+          <Text style={styles.subtitle}>{value}</Text>
         </View>
         <View style={styles.textGroup}>
           <Text style={styles.title}>Diff</Text>
-          <Text style={[styles.subtitle, { color: getDiffColor() }]}>
-            {diff}
-          </Text>
+          <Text style={[styles.subtitle, { color: getDiffColor() }]}>{diff}</Text>
         </View>
       </View>
     </View>
@@ -81,9 +77,12 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     textAlign: "center",
+    color:
+      "radial-gradient(circle, rgba(69,255,0,0.5) 0%, rgba(0,240,255,0.5) 100%)",
   },
   progressBarContainer: {
-    backgroundColor: "#0000FF",
+    backgroundColor: "grey",
+    opacity:0.5,
     height: 20,
     borderRadius: 10,
     overflow: "hidden",
@@ -98,8 +97,15 @@ const styles = StyleSheet.create({
     left: 0,
   },
   marker: {
-    backgroundColor: "orange",
+    backgroundColor: "black",
     width: 3,
+    height: "100%",
+    position: "absolute",
+    fontWeight:"bold",
+    top: 0,
+  },
+  exceededBar: {
+    backgroundColor: "red",
     height: "100%",
     position: "absolute",
     top: 0,

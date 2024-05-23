@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     textAlign: "right",
     fontSize: 10,
     color:
-      "radial-gradient(circle, rgba(69,255,0,1) 0%, rgba(0,240,255,1) 100%)",
+      "radial-gradient(circle, rgba(69,255,0,0.5) 0%, rgba(0,240,255,0.5) 100%)",
   },
   serviceContainer: {
     alignItems:"center",

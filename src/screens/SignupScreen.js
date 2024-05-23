@@ -10,6 +10,7 @@ const SignupScreen = ({ navigation }) => {
   return (
     <ScrollView>
       <ImageBackground source={img} resizeMode="cover" style={{ flex: 1 }}>
+        <View style={styles.overlay} />
         <View style={styles.container}>
           <Spacer>
             <Text style={styles.header} h5>
@@ -48,11 +49,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    marginVertical: 144.5,
+    marginVertical: 161,
   },
   header: {
     alignSelf: "center",
-    color: "white",
+    color: "#CCCCCC",
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Siyah ve yarı saydam
   },
 });
 

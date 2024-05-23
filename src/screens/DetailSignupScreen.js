@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  ImageBackground,
-  ScrollView
-} from "react-native";
+import { View, StyleSheet, ImageBackground, ScrollView } from "react-native";
 import { Text } from "react-native-elements";
 import Spacer from "../components/Spacer";
 import MainButton from "../components/MainButton";
@@ -14,6 +9,7 @@ const DetailSignupScreen = ({ navigation }) => {
   return (
     <ScrollView>
       <ImageBackground source={img} resizeMode="cover" style={{ flex: 1 }}>
+        <View style={styles.overlay} />
         <View style={styles.container}>
           <Spacer>
             <Spacer />
@@ -48,11 +44,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    marginVertical: 154,
+    marginVertical: 171,
   },
   header: {
     alignSelf: "center",
-    color: "white",
+    color: "#CCCCCC",
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Siyah ve yarı saydam
   },
 });
 

@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     color:"white"
   },
   link2:{
-    color:"green"
+    color:"orange"
   }
 });
 
