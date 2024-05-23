@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { Text, Card, Icon } from "react-native-elements";
+import { Text, Card } from "react-native-elements";
 import TopBar from "../components/TopBar";
 
 const AccountScreen = () => {
@@ -22,7 +22,7 @@ const AccountScreen = () => {
     { label: "Sun", value: 1453 },
   ];
   const dailyActivities = [
-    { label: "Mon", value: "PULL"},
+    { label: "Mon", value: "PULL" },
     { label: "Tue", value: "PUSH" },
     { label: "Wed", value: "LEG" },
     { label: "Thu", value: "OFF" },
@@ -68,18 +68,6 @@ const AccountScreen = () => {
       </Card>
     </View>
   );
-};
-AccountScreen.navigationOptions = {
-  headerShown: null,
-  tabBarIcon: (
-    { focused } // Dynamic icon color based on state
-  ) => (
-    <Icon
-      name="clipboard-account"
-      type="material-community"
-      color={focused ? "orange" : "black"} // Set active and inactive colors
-    />
-  ),
 };
 
 const styles = StyleSheet.create({

@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  ImageBackground,
-} from "react-native";
+import { View, StyleSheet, ScrollView, ImageBackground } from "react-native";
 import { Text } from "react-native-elements";
 import Spacer from "../components/Spacer";
 import NavLink from "../components/NavLink";
@@ -16,7 +11,7 @@ const SigninScreen = ({ navigation }) => {
   return (
     <ScrollView>
       <ImageBackground source={img} resizeMode="cover" style={{ flex: 1 }}>
-      <View style={styles.overlay} />
+        <View style={styles.overlay} />
         <View style={styles.container}>
           <Spacer>
             <Text style={styles.header} h5>
@@ -52,7 +47,7 @@ SigninScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginVertical:245
+    marginVertical: 245,
   },
   header: {
     alignSelf: "center",
@@ -60,7 +55,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Siyah ve yarı saydam
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Siyah ve yarı saydam
   },
 });
 
