@@ -117,11 +117,11 @@ const MealCard = ({ title, onFoodSelect, updateTotalCalories }) => {
         </View>
       ))}
       <Text style={{ fontSize: 14, fontWeight: "bold",marginVertical:10 }}>
-        Toplam Kalori: {totalCalories}
+        Total Calories: {totalCalories}
       </Text>
       <Button
         buttonStyle={{ backgroundColor: "#0000FF", padding: 15,borderRadius:20,marginLeft:"auto" }}
-        title="Gıda Ekle"
+        title="Add Food"
         onPress={toggleOverlay}
       />
       {isVisible && (
