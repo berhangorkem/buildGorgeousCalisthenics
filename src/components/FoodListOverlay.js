@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, TouchableOpacity, Alert } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, Alert, ScrollView } from "react-native";
 import { Overlay, Icon } from "react-native-elements";
 import FoodAddOverlay from "./FoodAddOverlay"; // assuming FoodAddOverlay is in a separate file
 
@@ -44,7 +44,6 @@ const FoodListOverlay = ({
   ]);
   const [isNewFoodOverlayVisible, setIsNewFoodOverlayVisible] = useState(false);
 
-
   const handleDeleteFood = (itemId) => {
     Alert.alert(
       "Delete Selected Food",
@@ -69,7 +68,6 @@ const FoodListOverlay = ({
       style={styles.foodItem}
       onPress={() => onFoodSelect && onFoodSelect(item)}
       onLongPress={() => handleDeleteFood(item.id)}
-      // Optional callback for food selection
     >
       <OverlayFoodCard {...item} />
     </TouchableOpacity>
@@ -82,7 +80,9 @@ const FoodListOverlay = ({
         <TouchableOpacity onPress={() => setIsNewFoodOverlayVisible(true)}>
           <Text style={styles.addFoodButton}>Add New Food</Text>
         </TouchableOpacity>
-        <View style={styles.foodList}>{foodData.map(renderFoodItem)}</View>
+        <ScrollView style={styles.foodList}>
+          {foodData.map(renderFoodItem)}
+        </ScrollView>
       </View>
       <FoodAddOverlay
         isVisible={isNewFoodOverlayVisible}
@@ -97,16 +97,18 @@ const FoodListOverlay = ({
 
 const styles = StyleSheet.create({
   overlayContent: {
-    borderWidth: 1,
     padding: 20,
     alignItems: "center",
+    maxHeight:400,
+    width: '90%', // Set overlay width to 90% of the screen width
   },
   overlayTitle: {
     fontSize: 20,
     marginBottom: 10,
   },
   foodList: {
-    flex: 1, // Allow list to fill available space
+    width: '100%',
+    maxHeight: '100%', // Ensure the food list does not take too much height
   },
   foodItem: {
     marginBottom: 10,
@@ -133,7 +135,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
   },
   addFoodButton: {
-    marginTop: 10,
+    marginVertical: 20,
     padding: 10,
     backgroundColor: "blue",
     color: "white",
@@ -142,4 +144,3 @@ const styles = StyleSheet.create({
 });
 
 export default FoodListOverlay;
-
