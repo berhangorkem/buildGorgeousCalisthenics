@@ -445,7 +445,7 @@ const styles = StyleSheet.create({
     marginLeft: 10, // Start text a consistent distance from the image
   },
   closeButton: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "#0000FF",
     borderRadius: 10,
     padding: 10,
     marginTop: 10,

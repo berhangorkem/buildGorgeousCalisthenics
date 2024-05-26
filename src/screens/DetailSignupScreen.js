@@ -20,10 +20,12 @@ const DetailSignupScreen = ({ navigation }) => {
               It will help us to know more about you!
             </Text>
             <Spacer />
-            <InputContainer label="Age" />
-            <InputContainer label="Size" />
-            <InputContainer label="Weight" />
+            <InputContainer label="Age" type="numeric"/>
+            <InputContainer label="Size" type="numeric"/>
+            <InputContainer label="Weight" type="numeric"/>
             <InputContainer label="Gender" />
+            <InputContainer label="Activity Level" />
+            <Spacer/>
             <MainButton
               pageName="mainFlow"
               title="Sign Up"
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    marginVertical: 171,
+    marginVertical: 128.5,
   },
   header: {
     alignSelf: "center",

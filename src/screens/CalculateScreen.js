@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, ScrollView } from "react-native";
 import TopBar from "../components/TopBar";
 import ProgressBar from "../components/ProgressBar";
 import MealCard from "../components/MealCard";
 
-const CalculateScreen = () => {
+const CalculateScreen = ({ route }) => {
   const [breakfastValue, setBreakfastValue] = useState(0);
   const [lunchValue, setLunchValue] = useState(0);
   const [dinnerValue, setDinnerValue] = useState(0);
   const [snacksValue, setSnacksValue] = useState(0);
   const [totalCalories, setTotalCalories] = useState(0);
-  const limit = 2400;
+  // const { BMR } = route.params || {};
+  // const [limit, setLimit] = useState(BMR || 2400); // Default to 2400 if BMR is not provided
+  const limit = 2983;
 
   const handleFoodSelect = (meal, newTotalCalories) => {
     if (meal === "breakfast") {
@@ -31,6 +33,10 @@ const CalculateScreen = () => {
       newTotalCalories;
     setTotalCalories(totalCalories);
   };
+
+  // useEffect(() => {
+  //   setLimit(BMR);
+  // }, [BMR]);
 
   return (
     <ScrollView>

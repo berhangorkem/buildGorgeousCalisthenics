@@ -5,6 +5,7 @@ const InputContainer = ({ label }) => {
   return (
     <Input
       label={label}
+      keyboardType="numeric"
       inputContainerStyle={{
         borderWidth: 1,
         borderRadius: 10,

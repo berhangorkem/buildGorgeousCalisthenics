@@ -1,9 +1,11 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
+import React, { useEffect } from "react";
+import { View, StyleSheet, Dimensions } from "react-native";
 import { Text, Card } from "react-native-elements";
 import TopBar from "../components/TopBar";
+import { BarChart } from "react-native-chart-kit";
 
-const AccountScreen = () => {
+const AccountScreen = ({navigation}) => {
+
   const userInfo = [
     { label: "Username", value: "berhangorkem" },
     { label: "E-Mail", value: "berhangorkem@gmail.com" },
@@ -11,25 +13,72 @@ const AccountScreen = () => {
     { label: "Size", value: "180" },
     { label: "Weight", value: "95" },
     { label: "Gender", value: "male" },
+    { label: "Activity Level", value: "medium" }, // Eklenen activity level
   ];
   const dailyCalories = [
-    { label: "Mon", value: 1300 },
-    { label: "Tue", value: 1100 },
-    { label: "Wed", value: 1400 },
-    { label: "Thu", value: 1900 },
+    { label: "Mon", value: 2300 },
+    { label: "Tue", value: 3100 },
+    { label: "Wed", value: 4400 },
+    { label: "Thu", value: 2900 },
     { label: "Fri", value: 2000 },
     { label: "Sat", value: 1919 },
-    { label: "Sun", value: 1453 },
+    { label: "Sun", value: 3453 },
   ];
-  const dailyActivities = [
-    { label: "Mon", value: "PULL" },
-    { label: "Tue", value: "PUSH" },
-    { label: "Wed", value: "LEG" },
-    { label: "Thu", value: "OFF" },
-    { label: "Fri", value: "CARDİO" },
-    { label: "Sat", value: "FULLBODY" },
-    { label: "Sun", value: "OFF" },
-  ];
+
+  const chartConfig = {
+    backgroundGradientFrom: "#ffffff",
+    backgroundGradientTo: "#ffffff",
+    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+    labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+    barPercentage: 0.4,
+    propsForLabels: {
+      fontSize: 10,
+    },
+    decimalPlaces: 0,
+    useShadowColorFromDataset: false,
+  };
+
+  const chartData = {
+    labels: dailyCalories.map(item => item.label),
+    datasets: [
+      {
+        data: dailyCalories.map(item => item.value),
+      },
+    ],
+  };
+
+  const calculateBMR = (weight, height, age, gender, activityLevel) => {
+    let BMR;
+    if (gender === "male") {
+      BMR = 66.5 + (13.75 * weight) + (5 * height) - (6.77 * age);
+    } else if (gender === "female") {
+      BMR = 655.1 + (9.56 * weight) + (1.85 * height) - (4.67 * age);
+    }
+
+    switch (activityLevel) {
+      case "stable":
+        return BMR * 1.2;
+      case "light":
+        return BMR * 1.3;
+      case "medium":
+        return BMR * 1.4;
+      case "high":
+        return BMR * 1.5;
+      default:
+        return BMR;
+    }
+  };
+
+  const screenWidth = Dimensions.get("window").width;
+  const chartHeight = 220;
+  const maxValue = Math.max(...dailyCalories.map(item => item.value));
+  const userWeight = parseFloat(userInfo.find(item => item.label === "Weight").value);
+  const userHeight = parseFloat(userInfo.find(item => item.label === "Size").value);
+  const userAge = parseInt(userInfo.find(item => item.label === "Age").value);
+  const userGender = userInfo.find(item => item.label === "Gender").value;
+  const userActivityLevel = userInfo.find(item => item.label === "Activity Level").value;
+  const userBMR = calculateBMR(userWeight, userHeight, userAge, userGender, userActivityLevel);
+  const orangeLinePosition = chartHeight * (1 - userBMR / maxValue);
 
   return (
     <View>
@@ -46,25 +95,27 @@ const AccountScreen = () => {
           </View>
         ))}
       </Card>
+
       <Card containerStyle={styles.card}>
         <Card.Title style={styles.infoBoxTitle}>Daily Calories</Card.Title>
         <Card.Divider />
-        {dailyCalories.map((item) => (
-          <View style={styles.infoRow} key={item.label}>
-            <Text style={styles.infoLabel}>{item.label}: </Text>
-            <Text>{item.value}</Text>
-          </View>
-        ))}
-      </Card>
-      <Card containerStyle={styles.card}>
-        <Card.Title style={styles.infoBoxTitle}>Daily Activities</Card.Title>
-        <Card.Divider />
-        {dailyActivities.map((item) => (
-          <View style={styles.infoRow} key={item.label}>
-            <Text style={styles.infoLabel}>{item.label}: </Text>
-            <Text>{item.value}</Text>
-          </View>
-        ))}
+        <View style={{ position: 'relative', height: chartHeight }}>
+          <BarChart
+            style={styles.chart}
+            data={chartData}
+            width={screenWidth - 64}
+            height={chartHeight}
+            yAxisLabel=""
+            chartConfig={chartConfig}
+            verticalLabelRotation={20}
+            yLabelsOffset={40}
+            fromZero={true}
+          />
+          <View style={[styles.orangeLine, { top: orangeLinePosition }]} />
+          <Text style={[styles.lineLabel, { top: orangeLinePosition + 5, right:5 }]}>
+            {userBMR.toFixed(0)}
+          </Text>
+        </View>
       </Card>
     </View>
   );
@@ -85,6 +136,25 @@ const styles = StyleSheet.create({
   },
   infoLabel: {
     fontWeight: "bold",
+  },
+  chart: {
+    marginVertical: 8,
+    borderRadius: 10,
+    overflow: "hidden",
+  },
+  orangeLine: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    height: 2,
+    backgroundColor: 'orange',
+  },
+  lineLabel: {
+    position: 'absolute',
+    left: 5,
+    fontSize: 10,
+    color: 'orange',
+    textAlign: 'right'
   },
 });
 

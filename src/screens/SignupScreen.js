@@ -20,10 +20,10 @@ const SignupScreen = ({ navigation }) => {
               Create an Account
             </Text>
             <Spacer />
-            <InputContainer label="Username" />
-            <InputContainer label="Phone Number" />
-            <InputContainer label="E-Mail" />
-            <InputContainer label="Password" />
+            <InputContainer label="Username"/>
+            <InputContainer label="Phone Number" type="phone-pad"/>
+            <InputContainer label="E-Mail" type="email-address"  />
+            <InputContainer label="Password" type="password " />
             <MainButton
               pageName="Detail"
               title="Sign Up"

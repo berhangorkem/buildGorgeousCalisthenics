@@ -89,6 +89,7 @@ const FoodListOverlay = ({
         toggleOverlay={() => setIsNewFoodOverlayVisible(false)}
         onAddFood={(newFoodItem) => {
           setFoodData([...foodData, { ...newFoodItem, id: foodData.length + 1 }]);
+          setIsNewFoodOverlayVisible(false); 
         }}
       />
     </Overlay>
@@ -105,6 +106,7 @@ const styles = StyleSheet.create({
   overlayTitle: {
     fontSize: 20,
     marginBottom: 10,
+    fontWeight:"bold"
   },
   foodList: {
     width: '100%',
