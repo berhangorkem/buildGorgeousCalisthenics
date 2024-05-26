@@ -11,7 +11,7 @@ import {
 } from "react-native";
 
 // Workout Plans Data (Example)
-const kol1Icon = require("../../assets/movements/kol-1.png");
+
 
 const workoutPlans = [
   {
@@ -21,16 +21,24 @@ const workoutPlans = [
         name: "Chest & Triceps-1",
         exercises: [
           {
-            name: "Push-up",
-            icon: kol1Icon,
-          },
-          {
             name: "Bench Press",
-            icon: kol1Icon,
+            icon: require("../../assets/movements/chest-triceps/chest/1/bench-press.png"),
           },
           {
-            name: "Tricep Dips",
-            icon: kol1Icon,
+            name: "Machine Fly",
+            icon: require("../../assets/movements/chest-triceps/chest/1/machine-fly.png"),
+          },
+          {
+            name: "Push Up",
+            icon: require("../../assets/movements/chest-triceps/chest/1/push-up.png"),
+          },
+          {
+            name: "Dips",
+            icon: require("../../assets/movements/chest-triceps/triceps/1/dips.png"),
+          },
+          {
+            name: "Standing Dumbbell Triceps Extension",
+            icon: require("../../assets/movements/chest-triceps/triceps/1/standing-dumbbell-triceps-extension.png"),
           },
         ],
       },
@@ -39,20 +47,28 @@ const workoutPlans = [
         exercises: [
           {
             name: "Incline Bench Press",
-            icon: kol1Icon,
+            icon: require("../../assets/movements/chest-triceps/chest/2/incline-bench-press.png"),
           },
           {
             name: "Chest Fly",
-            icon: kol1Icon,
+            icon: require("../../assets/movements/chest-triceps/chest/2/chest-fly.png"),
           },
           {
-            name: "Tricep Extension",
-            icon: kol1Icon,
+            name: "Machine Chest Press",
+            icon: require("../../assets/movements/chest-triceps/chest/2/machine-chest-press.png"),
+          },
+          {
+            name: "Overhead Triceps Extension",
+            icon: require("../../assets/movements/chest-triceps/triceps/2/overhead-triceps-extension.png"),
+          },
+          {
+            name: "Triceps Pushdown",
+            icon: require("../../assets/movements/chest-triceps/triceps/2/triceps-pushdown.png"),
           },
         ],
       },
     ],
-    icons: [kol1Icon, kol1Icon],
+    icons: [require("../../assets/movements/plans/chest.png"), require("../../assets/movements/plans/triceps.png")],
   },
   {
     category: "Back & Biceps",
@@ -61,16 +77,24 @@ const workoutPlans = [
         name: "Back & Biceps-1",
         exercises: [
           {
-            name: "Pull-up",
-            icon: kol1Icon,
+            name: "Pull Up",
+            icon: require("../../assets/movements/back-biceps/back/1/pull-up.png"),
           },
           {
-            name: "Deadlift",
-            icon: kol1Icon,
+            name: "Shotgun Row",
+            icon: require("../../assets/movements/back-biceps/back/1/shotgun-row.png"),
           },
           {
-            name: "Bicep Curl",
-            icon: kol1Icon,
+            name: "T-Bar Row",
+            icon: require("../../assets/movements/back-biceps/back/1/t-bar-row.png"),
+          },
+          {
+            name: "Dumbbell Curl",
+            icon: require("../../assets/movements/back-biceps/biceps/1/dumbbell-curl.png"),
+          },
+          {
+            name: "Incline Hammer Curl",
+            icon: require("../../assets/movements/back-biceps/biceps/1/incline-hammer-curl.png"),
           },
         ],
       },
@@ -78,21 +102,29 @@ const workoutPlans = [
         name: "Back & Biceps-2",
         exercises: [
           {
-            name: "Lat Pulldown",
-            icon: kol1Icon,
+            name: "Dumbbell Incline Row",
+            icon: require("../../assets/movements/back-biceps/back/2/dumbble-incline-row.png"),
           },
           {
-            name: "Bent-over Row",
-            icon: kol1Icon,
+            name: "Seated Cable Row",
+            icon: require("../../assets/movements/back-biceps/back/2/seated-cable-row.png"),
           },
           {
-            name: "Hammer Curl",
-            icon: kol1Icon,
+            name: "Lat Pull Down",
+            icon: require("../../assets/movements/back-biceps/back/2/lat-pulldown.png"),
+          },
+          {
+            name: "Concentration Curl",
+            icon: require("../../assets/movements/back-biceps/biceps/2/concentration-curl.png"),
+          },
+          {
+            name: "EZ Bar Curl",
+            icon: require("../../assets/movements/back-biceps/biceps/2/ez-bar-curl.png"),
           },
         ],
       },
     ],
-    icons: [kol1Icon, kol1Icon],
+    icons: [require("../../assets/movements/plans/back.png"), require("../../assets/movements/plans/biceps.png")],
   },
   {
     category: "Legs & Abs",
@@ -100,21 +132,63 @@ const workoutPlans = [
       {
         name: "Legs & Abs-1",
         exercises: [
-          { name: "Squat", icon: kol1Icon },
-          { name: "Lunge", icon: kol1Icon },
-          { name: "Plank", icon: kol1Icon },
+          {
+            name: "Squat",
+            icon: require("../../assets/movements/legs-abs/legs/1/squat.png"),
+          },
+          {
+            name: "Lunges",
+            icon: require("../../assets/movements/legs-abs/legs/1/lunges.png"),
+          },
+          {
+            name: "Dumbbell Seated Calf Raise",
+            icon: require("../../assets/movements/legs-abs/legs/1/dumbbell-seated-calf-raise.png"),
+          },
+          {
+            name: "Leg Back Extension",
+            icon: require("../../assets/movements/legs-abs/legs/1/leg-back-extension.png"),
+          },
+          {
+            name: "Plank",
+            icon: require("../../assets/movements/legs-abs/abs/1/plank.png"),
+          },
+          {
+            name: "Smith Machine Hip Raise",
+            icon: require("../../assets/movements/legs-abs/abs/1/smith-machine-hip-raise.png"),
+          },
         ],
       },
       {
         name: "Legs & Abs-2",
         exercises: [
-          { name: "Leg Press", icon: kol1Icon },
-          { name: "Calf Raise", icon: kol1Icon },
-          { name: "Russian Twist", icon: kol1Icon },
+          {
+            name: "Deadlift",
+            icon: require("../../assets/movements/legs-abs/legs/2/deadlift.png"),
+          },
+          {
+            name: "Leg Press",
+            icon: require("../../assets/movements/legs-abs/legs/2/leg-press.png"),
+          },
+          {
+            name: "Standing Barbell Calf Raise",
+            icon: require("../../assets/movements/legs-abs/legs/2/standing-barbell-calf-raise.png"),
+          },
+          {
+            name: "Thigh Abductor",
+            icon: require("../../assets/movements/legs-abs/legs/2/thigh-abductor.png"),
+          },
+          {
+            name: "Cable Crunch",
+            icon: require("../../assets/movements/legs-abs/abs/2/cable-crunch.png"),
+          },
+          {
+            name: "Twist",
+            icon: require("../../assets/movements/legs-abs/abs/2/twist.png"),
+          },
         ],
       },
     ],
-    icons: [kol1Icon, kol1Icon],
+    icons: [require("../../assets/movements/plans/legs.png"), require("../../assets/movements/plans/abs.png")],
   },
   {
     category: "Shoulders",
@@ -122,43 +196,47 @@ const workoutPlans = [
       {
         name: "Shoulders-1",
         exercises: [
-          { name: "Shoulder Press", icon: kol1Icon },
-          { name: "Lateral Raise", icon: kol1Icon },
-          { name: "Front Raise", icon: kol1Icon },
+          {
+            name: "Leverage Shoulder Press",
+            icon: require("../../assets/movements/shoulders/1/leverage-shoulder-press.png"),
+          },
+          {
+            name: "Side Shoulder Raise",
+            icon: require("../../assets/movements/shoulders/1/side-shoulder-raise.png"),
+          },
+          {
+            name: "Shrug",
+            icon: require("../../assets/movements/shoulders/1/shrug.png"),
+          },
+          {
+            name: "Smith Machine Shoulder Press",
+            icon: require("../../assets/movements/shoulders/1/smith-machine-shoulder-press.png"),
+          },
         ],
       },
       {
         name: "Shoulders-2",
         exercises: [
-          { name: "Arnold Press", icon: kol1Icon },
-          { name: "Reverse Fly", icon: kol1Icon },
-          { name: "Shrug", icon: kol1Icon },
+          {
+            name: "Seated Barbell Military Press",
+            icon: require("../../assets/movements/shoulders/2/seated-barbell-millitary-press.png"),
+          },
+          {
+            name: "Seated Dumbbell Press",
+            icon: require("../../assets/movements/shoulders/2/seated-dumbble-press.png"),
+          },
+          {
+            name: "Lateral Raise",
+            icon: require("../../assets/movements/shoulders/2/lateral-raise.png"),
+          },
+          {
+            name: "Upright Row",
+            icon: require("../../assets/movements/shoulders/2/upright-rows.png"),
+          },
         ],
       },
     ],
-    icons: [kol1Icon, kol1Icon],
-  },
-  {
-    category: "Full Body",
-    plans: [
-      {
-        name: "Full Body-1",
-        exercises: [
-          { name: "Burpee", icon: kol1Icon },
-          { name: "Mountain Climber", icon: kol1Icon },
-          { name: "Jumping Jack", icon: kol1Icon },
-        ],
-      },
-      {
-        name: "Full Body-2",
-        exercises: [
-          { name: "Snatch", icon: kol1Icon },
-          { name: "Clean and Jerk", icon: kol1Icon },
-          { name: "Thruster", icon: kol1Icon },
-        ],
-      },
-    ],
-    icons: [kol1Icon, kol1Icon],
+    icons: [require("../../assets/movements/plans/shoulder-top.png"), require("../../assets/movements/plans/shoulder.png")],
   },
   {
     category: "Cardio",
@@ -166,24 +244,41 @@ const workoutPlans = [
       {
         name: "Cardio-1",
         exercises: [
-          { name: "Running", icon: kol1Icon },
-          { name: "Cycling", icon: kol1Icon },
-          { name: "Jump Rope", icon: kol1Icon },
+          {
+            name: "Running",
+            icon: require("../../assets/movements/cardio/1/running.png"),
+          },
+          {
+            name: "Rowing",
+            icon: require("../../assets/movements/cardio/1/rowing.png"),
+          },
+          {
+            name: "Skipping",
+            icon: require("../../assets/movements/cardio/1/skipping.png"),
+          },
         ],
       },
       {
         name: "Cardio-2",
         exercises: [
-          { name: "HIIT", icon: kol1Icon },
-          { name: "Rowing", icon: kol1Icon },
-          { name: "Boxing", icon: kol1Icon },
+          {
+            name: "Elliptical Trainer",
+            icon: require("../../assets/movements/cardio/2/elliptical-trainer.png"),
+          },
+          {
+            name: "Bike",
+            icon: require("../../assets/movements/cardio/2/bike.png"),
+          },
+          {
+            name: "Step Mill",
+            icon: require("../../assets/movements/cardio/2/step-mill.png"),
+          },
         ],
       },
     ],
-    icons: [kol1Icon, kol1Icon],
+    icons: [require("../../assets/movements/plans/cardio.png"), require("../../assets/movements/plans/cardio-2.png")],
   },
 ];
-
 
 const PlansScreen = () => {
   const [selectedPlan, setSelectedPlan] = useState(null);
@@ -325,25 +420,29 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
     padding: 20,
-    alignItems: "center",
+    alignItems: "flex-start", // Align content to the left
   },
   modalTitle: {
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 10,
+    alignSelf: "center", // Center the title
   },
   exerciseItem: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 10,
+    marginLeft: 20, // Shift items towards the right
   },
   exerciseIcon: {
     width: 30,
     height: 30,
-    marginRight: 10,
+    flexShrink: 0, // Prevent shrinking of the image
+    alignSelf: "flex-start", // Align image to the left
   },
   exerciseText: {
     fontSize: 16,
+    marginLeft: 10, // Start text a consistent distance from the image
   },
   closeButton: {
     backgroundColor: "#2196F3",
