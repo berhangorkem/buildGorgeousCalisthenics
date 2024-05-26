@@ -23,7 +23,7 @@ const ExerciseScreen = ({ navigation }) => {
         <View style={styles.textContainer}>
           <Text style={styles.paragraph}>
             To create and review your own workouts in detail, go to the
-            "Exercises" page.
+            "Movements" page.
           </Text>
           <Button
             onPress={() => navigation.navigate("Movements")}

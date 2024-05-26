@@ -111,8 +111,9 @@ const MovementsScreen = () => {
     <Card containerStyle={styles.card}>
       <TouchableOpacity onPress={() => toggleDescription(item.id)}>
         <View style={styles.cardContent}>
+          <Text style={styles.cardTargetedArea}>{item.targetedArea}</Text>
+          <View style={styles.cardTitleUnderline} />
           <View style={styles.cardImageContainer}>
-            <Text style={styles.cardTargetedArea}>{item.targetedArea}</Text>
             <Image source={item.icon} style={styles.cardImage} />
           </View>
           {visibleDescriptions[item.id] && (
@@ -140,12 +141,22 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     backgroundColor: "#f5f5f5",
-    borderRadius:10
+    borderRadius: 10,
+    paddingBottom: 30, // Space at the bottom of the screen
   },
   card: {
     flex: 1,
     marginHorizontal: 25,
-    marginVertical:20,
+    marginVertical: 20,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    elevation: 5,
+    backgroundColor: "#ffffff",
   },
   cardContent: {
     alignItems: "center",
@@ -164,16 +175,24 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
+  cardTitleUnderline: {
+    width: '90%',
+    height: 1,
+    backgroundColor: '#ddd',
+    marginTop: 5,
+    marginBottom: 5,
+  },
   expandedCard: {
     marginTop: 10,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor:"#FFF",
-    borderRadius:10,
+    backgroundColor: "#f8f8f8",
+    borderRadius: 10,
     shadowColor: 'transparent', // Disable shadow
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0,
     shadowRadius: 0,
+    marginBottom: 10, // Margin at the bottom of each card
   },
   cardTitle: {
     marginTop: 5,
