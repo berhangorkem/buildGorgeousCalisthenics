@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Modal
 } from "react-native";
-import { Card,BottomSheet,Button  } from "react-native-elements";
+import { Card,Button  } from "react-native-elements";
 
 // Sample data for movements with descriptions
 const movementsData = [
@@ -464,7 +464,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#ddd",
     padding: 10,
     marginVertical: 5,
-    borderRadius: 5,
+    marginHorizontal:10,
+    borderRadius: 50,
   },
   areaTitle: {
     fontSize: 18,
@@ -531,6 +532,8 @@ const styles = StyleSheet.create({
   closeButton: {
     backgroundColor: "#ddd",
     marginTop: 20,
+    borderRadius:20,
+    marginHorizontal:100
   },
 });
 

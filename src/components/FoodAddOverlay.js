@@ -12,42 +12,30 @@ const FoodAddOverlay = ({ isVisible, toggleOverlay, onAddFood }) => {
 
   const [newFoodName, setNewFoodName] = useState("");
   const [newFoodCalories, setNewFoodCalories] = useState("");
-  const [newFoodService, setNewFoodService] = useState("");  
-  const [newFoodIcon, setNewFoodIcon] = useState("");
-  // const [newFoodProtein, setNewFoodProtein] = useState("");
-  // const [newFoodOil, setNewFoodOil] = useState("");
-  // const [newFoodCarb, setNewFoodCarb] = useState("");
+  // const [newFoodService, setNewFoodService] = useState("");  
+  // const [newFoodIcon, setNewFoodIcon] = useState("");
 
   const handleAddFood = () => {
     if (
       newFoodName &&
       newFoodCalories &&
-      newFoodService &&
+      // newFoodService &&
       // newFoodIcon &&
-      // newFoodCarb &&
-      // newFoodProtein &&
-      // newFoodOil &&
       !isNaN(newFoodCalories)
     ) {
       const newFoodItem = {
         name: newFoodName,
-        icon: "hamburger", // İkon sabit olarak ayarlanıyor
+        icon: require('../../assets/foods/food.png'), // İkon sabit olarak ayarlanıyor
         calories: parseInt(newFoodCalories),
-        service: parseInt(newFoodService),
+        service: 1,
         // icon: newFoodIcon,
-        // proteins: parseInt(newFoodProtein),
-        // oils: parseInt(newFoodOil),
-        // carbs: parseInt(newFoodCarb),
       };
 
       onAddFood(newFoodItem);
       setNewFoodName("");
       setNewFoodCalories("");
-      setNewFoodService("");
-      setNewFoodIcon("");
-      // setNewFoodProtein("");
-      // setNewFoodOil("");
-      // setNewFoodCarb("");
+      // setNewFoodService("");
+      // setNewFoodIcon("");
 
     } else {
       Alert.alert(
@@ -83,13 +71,13 @@ const FoodAddOverlay = ({ isVisible, toggleOverlay, onAddFood }) => {
           keyboardType="numeric"
           inputContainerStyle={styles.inputWithBorder} 
         />
-        <Input
+        {/* <Input
           placeholder="Service"
           value={newFoodService}
           onChangeText={setNewFoodService}
           keyboardType="numeric"
           inputContainerStyle={styles.inputWithBorder} 
-        />
+        /> */}
         {/* <Input
           placeholder="Icon"
           value={newFoodIcon}

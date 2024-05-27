@@ -1,12 +1,12 @@
 import React from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
-import { Icon, Text } from "react-native-elements";
+import { StyleSheet, View,Image } from "react-native";
+import { Text } from "react-native-elements";
 
 const FoodCard = ({ icon, name, calories, service }) => {
   return (
     <View style={styles.cardRow}>
       <View style={styles.iconTextContainer}>
-        <Icon name={icon} type="material-community" size={30} />
+      <Image source={icon} style={{ width: 30, height: 30 }} />
         <Text style={styles.foodInfo}>{name}</Text>
       </View>
       <View style={styles.serviceContainer}>
