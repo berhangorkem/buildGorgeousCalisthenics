@@ -12,8 +12,8 @@ const AccountScreen = ({navigation}) => {
     { label: "Age", value: "21" },
     { label: "Size", value: "180" },
     { label: "Weight", value: "95" },
-    { label: "Gender", value: "male" },
-    { label: "Activity Level", value: "medium" }, // Eklenen activity level
+    { label: "Gender", value: "Male" },
+    { label: "Activity Level", value: "Medium" }, // Eklenen activity level
   ];
   const dailyCalories = [
     { label: "Mon", value: 2300 },
@@ -49,20 +49,20 @@ const AccountScreen = ({navigation}) => {
 
   const calculateBMR = (weight, height, age, gender, activityLevel) => {
     let BMR;
-    if (gender === "male") {
+    if (gender === "Male") {
       BMR = 66.5 + (13.75 * weight) + (5 * height) - (6.77 * age);
-    } else if (gender === "female") {
+    } else if (gender === "Female") {
       BMR = 655.1 + (9.56 * weight) + (1.85 * height) - (4.67 * age);
     }
 
     switch (activityLevel) {
-      case "stable":
+      case "Stable":
         return BMR * 1.2;
-      case "light":
+      case "Light":
         return BMR * 1.3;
-      case "medium":
+      case "Medium":
         return BMR * 1.4;
-      case "high":
+      case "High":
         return BMR * 1.5;
       default:
         return BMR;

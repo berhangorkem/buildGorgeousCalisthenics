@@ -82,9 +82,9 @@ const mainFlow = createMaterialBottomTabNavigator(
 
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
-    Signup: SignupScreen,
-    Detail: DetailSignupScreen,
     Signin: SigninScreen,
+    Signup: SignupScreen,
+    Detail: DetailSignupScreen
   }),
   mainFlow: mainFlow,
 });

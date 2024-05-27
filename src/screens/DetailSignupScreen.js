@@ -4,6 +4,8 @@ import { Text } from "react-native-elements";
 import Spacer from "../components/Spacer";
 import MainButton from "../components/MainButton";
 import InputContainer from "../components/InputContainer";
+import PickerContainer from "../components/PickerContainer";
+
 const DetailSignupScreen = ({ navigation }) => {
   const img = require("../../assets/banners/loginFlow-banner.jpg");
   return (
@@ -20,14 +22,25 @@ const DetailSignupScreen = ({ navigation }) => {
               It will help us to know more about you!
             </Text>
             <Spacer />
-            <InputContainer label="Age" type="numeric"/>
-            <InputContainer label="Size" type="numeric"/>
-            <InputContainer label="Weight" type="numeric"/>
-            <InputContainer label="Gender" />
-            <InputContainer label="Activity Level" />
-            <Spacer/>
+            <InputContainer label="Age" type="numeric" />
+            <InputContainer label="Size" type="numeric" />
+            <InputContainer label="Weight" type="numeric" />
+            <PickerContainer
+              label="Gender"
+              options={["Male", "Female"]}
+            />
+            <PickerContainer
+              label="Activity Level"
+              options={[
+                "Stable",
+                "Light",
+                "Medium",
+                "High "
+              ]}
+            />
+            <Spacer />
             <MainButton
-              pageName="mainFlow"
+              pageName="Signin"
               title="Sign Up"
               navigation={navigation}
             />
@@ -46,7 +59,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    marginVertical: 128.5,
+    marginVertical: 114.5,
   },
   header: {
     alignSelf: "center",
