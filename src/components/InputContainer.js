@@ -1,14 +1,16 @@
 import React from "react";
 import { Input } from "react-native-elements";
 
-const InputContainer = ({ label ,type}) => {
+const InputContainer = ({ label ,type,onChangeText,value}) => {
 
   const isPassword = label.toLowerCase() === "password";
 
   return (
     <Input
       label={label}
+      onChangeText={onChangeText}
       keyboardType={type}
+      value={value}
       secureTextEntry={isPassword}
       inputContainerStyle={{
         borderWidth: 1,

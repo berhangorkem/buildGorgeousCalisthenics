@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
-import { Icon } from 'react-native-elements';
-import { LogBox } from 'react-native';
+import { UserProvider } from "./src/context/UserContext";
+import { Icon } from "react-native-elements";
+import { LogBox } from "react-native";
 
 import AccountScreen from "./src/screens/AccountScreen";
 import CalculateScreen from "./src/screens/CalculateScreen";
@@ -17,18 +18,16 @@ import { setNavigator } from "./src/navigationRef";
 
 LogBox.ignoreAllLogs();
 
-const ExerciseStack = createStackNavigator(
-  {
-    Exercises: {
-      screen: ExerciseScreen,
-      navigationOptions: {
-        headerShown: false,
-      },
+const ExerciseStack = createStackNavigator({
+  Exercises: {
+    screen: ExerciseScreen,
+    navigationOptions: {
+      headerShown: false,
     },
-    Plans: PlansScreen,
-    Movements: MovementsScreen,
-  }
-);
+  },
+  Plans: PlansScreen,
+  Movements: MovementsScreen,
+});
 
 const mainFlow = createMaterialBottomTabNavigator(
   {
@@ -84,7 +83,7 @@ const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
     Signin: SigninScreen,
     Signup: SignupScreen,
-    Detail: DetailSignupScreen
+    Detail: DetailSignupScreen,
   }),
   mainFlow: mainFlow,
 });
@@ -93,10 +92,12 @@ const App = createAppContainer(switchNavigator);
 
 export default () => {
   return (
+    <UserProvider>
       <App
         ref={(navigator) => {
           setNavigator(navigator);
         }}
       />
+    </UserProvider>
   );
 };

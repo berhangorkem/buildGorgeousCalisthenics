@@ -1,12 +1,30 @@
-import React from "react";
-import { View, StyleSheet, ImageBackground, ScrollView } from "react-native";
-import { Text } from "react-native-elements";
+import React, { useContext, useState } from "react";
+import {
+  View,
+  StyleSheet,
+  ImageBackground,
+  ScrollView,
+  TextInput,
+} from "react-native";
+import { Text, Button } from "react-native-elements";
 import Spacer from "../components/Spacer";
 import NavLink from "../components/NavLink";
 import InputContainer from "../components/InputContainer";
-import MainButton from "../components/MainButton";
+import { UserContext } from "../context/UserContext";
+
 const SignupScreen = ({ navigation }) => {
   const img = require("../../assets/banners/loginFlow-banner.jpg");
+  const { saveUserData } = useContext(UserContext);
+  const [username, setUsername] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignUp = () => {
+    saveUserData({ username, phoneNumber, email, password });
+    navigation.navigate("Detail");
+  };
+
   return (
     <ScrollView>
       <ImageBackground source={img} resizeMode="cover" style={{ flex: 1 }}>
@@ -20,14 +38,33 @@ const SignupScreen = ({ navigation }) => {
               Create an Account
             </Text>
             <Spacer />
-            <InputContainer label="Username"/>
-            <InputContainer label="Phone Number" type="phone-pad"/>
-            <InputContainer label="E-Mail" type="email-address"  />
-            <InputContainer label="Password" type="password " />
-            <MainButton
-              pageName="Detail"
-              title="Sign Up"
-              navigation={navigation}
+            <InputContainer
+              label="Username"
+              value={username}
+              onChangeText={setUsername}
+            />
+            <InputContainer
+              label="Phone Number"
+              value={phoneNumber}
+              onChangeText={setPhoneNumber}
+              type="phone-pad"
+            />
+            <InputContainer
+              label="E-Mail"
+              value={email}
+              onChangeText={setEmail}
+              type="email-address"
+            />
+            <InputContainer
+              label="Password"
+              value={password}
+              onChangeText={setPassword}
+              type="password"
+            />
+            <Button
+              title="Next"
+              onPress={handleSignUp}
+              containerStyle={{ borderRadius: 20, marginHorizontal: 50 }}
             />
           </Spacer>
           <NavLink
@@ -57,7 +94,7 @@ const styles = StyleSheet.create({
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0, 0, 0, 0.5)", // Siyah ve yarı saydam
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 });
 

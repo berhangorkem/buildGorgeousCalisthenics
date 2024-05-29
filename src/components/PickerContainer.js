@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Text, ButtonGroup } from "react-native-elements";
 
-const PickerContainer = ({ label, options }) => {
-  const [selectedIndex, setSelectedIndex] = useState(0); // Default to first option
+const PickerContainer = ({ label, options,selectedValue,onValueChange }) => {
+
 
   return (
     <View style={styles.inputContainer}>
       <Text style={styles.label}>{label}</Text>
       <View style={styles.pickerContainer}>
         <ButtonGroup
-          onPress={(index) => setSelectedIndex(index)}
-          selectedIndex={selectedIndex}
+          onPress={onValueChange}
+          selectedIndex={selectedValue}
           buttons={options}
           containerStyle={styles.picker}
           selectedButtonStyle={styles.selectedButton}
