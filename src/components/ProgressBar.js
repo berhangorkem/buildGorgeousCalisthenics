@@ -2,8 +2,8 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 const ProgressBar = ({ value, limit }) => {
-  const filledWidth = (value / 4000) * 330;
-  const limitPoint = (limit / 4000) * 330;
+  const filledWidth = (value / 4500) * 330;
+  const limitPoint = (limit / 4500) * 330;
   const diff = limit - value;
 
   const getDiffColor = () => {

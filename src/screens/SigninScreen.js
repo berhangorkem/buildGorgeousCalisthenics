@@ -20,17 +20,14 @@ const SigninScreen = ({ navigation }) => {
 
   const useMockData = true; // Set this to false if you want to use API instead of mock data
   const mockUserData = {
-    username: "deneme",
-    password: "123",
-  };
+    username: "a",
+    password: "a",
+  }
 
   const handleSignIn = async () => {
     if (useMockData) {
       // Use mock data for login
-      if (
-        username === mockUserData.username &&
-        password === mockUserData.password
-      ) {
+      if (username === mockUserData.username && password === mockUserData.password) {
         navigation.navigate("mainFlow");
       } else {
         Alert.alert(

@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { View, ScrollView } from "react-native";
 import TopBar from "../components/TopBar";
 import ProgressBar from "../components/ProgressBar";
 import MealCard from "../components/MealCard";
+import { UserContext } from "../context/UserContext"; // Import the UserContext
 
-const CalculateScreen = ({ route }) => {
+const CalculateScreen = () => {
+  const { userBMR } = useContext(UserContext); // Destructure userBMR from context
+
   const [breakfastValue, setBreakfastValue] = useState(0);
   const [lunchValue, setLunchValue] = useState(0);
   const [dinnerValue, setDinnerValue] = useState(0);
   const [snacksValue, setSnacksValue] = useState(0);
   const [totalCalories, setTotalCalories] = useState(0);
-  // const { BMR } = route.params || {};
-  // const [limit, setLimit] = useState(BMR || 2400); // Default to 2400 if BMR is not provided
-  const limit = 2983;
 
   const handleFoodSelect = (meal, newTotalCalories) => {
     if (meal === "breakfast") {
@@ -34,17 +34,13 @@ const CalculateScreen = ({ route }) => {
     setTotalCalories(totalCalories);
   };
 
-  // useEffect(() => {
-  //   setLimit(BMR);
-  // }, [BMR]);
-
   return (
     <ScrollView>
       <View style={{ marginBottom: 10 }}>
         <TopBar text="Meal Calorie Calculation" />
         <ProgressBar
           value={breakfastValue + lunchValue + dinnerValue + snacksValue}
-          limit={limit}
+          limit={userBMR} // Use userBMR as the limit
         />
         <MealCard
           title="Breakfast"

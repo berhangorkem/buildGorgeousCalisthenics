@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 import { Text, Card } from "react-native-elements";
 import TopBar from "../components/TopBar";
 import { BarChart } from "react-native-chart-kit";
+import { UserContext } from "../context/UserContext";
 
-const AccountScreen = ({navigation}) => {
+const AccountScreen = () => {
+  const { saveUserBMR } = useContext(UserContext); // Destructure saveUserBMR from context
 
   const userInfo = [
     { label: "Username", value: "berhangorkem" },
@@ -13,8 +15,9 @@ const AccountScreen = ({navigation}) => {
     { label: "Size", value: "180" },
     { label: "Weight", value: "95" },
     { label: "Gender", value: "Male" },
-    { label: "Activity Level", value: "Medium" }, // Eklenen activity level
+    { label: "Activity Level", value: "Medium" },
   ];
+
   const dailyCalories = [
     { label: "Mon", value: 2300 },
     { label: "Tue", value: 3100 },
@@ -54,7 +57,6 @@ const AccountScreen = ({navigation}) => {
     } else if (gender === "Female") {
       BMR = 655.1 + (9.56 * weight) + (1.85 * height) - (4.67 * age);
     }
-
     switch (activityLevel) {
       case "Stable":
         return BMR * 1.2;
@@ -78,6 +80,11 @@ const AccountScreen = ({navigation}) => {
   const userGender = userInfo.find(item => item.label === "Gender").value;
   const userActivityLevel = userInfo.find(item => item.label === "Activity Level").value;
   const userBMR = calculateBMR(userWeight, userHeight, userAge, userGender, userActivityLevel);
+
+  useEffect(() => {
+    saveUserBMR(userBMR); // Save the BMR value in context when component mounts
+  }, [userBMR]);
+
   const orangeLinePosition = chartHeight * (1 - userBMR / maxValue);
 
   return (
@@ -112,7 +119,7 @@ const AccountScreen = ({navigation}) => {
             fromZero={true}
           />
           <View style={[styles.orangeLine, { top: orangeLinePosition }]} />
-          <Text style={[styles.lineLabel, { top: orangeLinePosition + 5, right:5 }]}>
+          <Text style={[styles.lineLabel, { top: orangeLinePosition + 5, right: 5 }]}>
             {userBMR.toFixed(0)}
           </Text>
         </View>
