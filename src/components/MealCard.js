@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Alert } from "react-native";
-import { Card, Icon, Text, Button } from "react-native-elements";
+import { View, TouchableOpacity, Alert } from "react-native";
+import { Card, Text, Button } from "react-native-elements";
 import FoodCard from "./FoodCard"; // Replace with your FoodCard component path
 import FoodListOverlay from "./FoodListOverlay"; // Replace with your FoodListOverlay component path
 
-const MealCard = ({ title, onFoodSelect, updateTotalCalories }) => {
+const MealCard = ({ title, onFoodSelect, updateTotalCalories, onFoodRemove }) => {
   const [isVisible, setVisible] = useState(false);
   const [selectedFoods, setSelectedFoods] = useState([]);
   const [foodToRemove, setFoodToRemove] = useState(null);
   const [totalCalories, setTotalCalories] = useState(0);
+  const [totalProteins, setTotalProteins] = useState(0);
+  const [totalFats, setTotalFats] = useState(0);
+  const [totalCarbs, setTotalCarbs] = useState(0);
 
   const toggleOverlay = () => {
     setVisible(!isVisible);
@@ -25,12 +28,25 @@ const MealCard = ({ title, onFoodSelect, updateTotalCalories }) => {
         selectedFoodItem.service;
       updatedSelectedFoods[existingFoodIndex].calories +=
         selectedFoodItem.calories * selectedFoodItem.service;
+      updatedSelectedFoods[existingFoodIndex].proteins +=
+        selectedFoodItem.proteins * selectedFoodItem.service;
+      updatedSelectedFoods[existingFoodIndex].fats +=
+        selectedFoodItem.fats * selectedFoodItem.service;
+      updatedSelectedFoods[existingFoodIndex].carbs +=
+        selectedFoodItem.carbs * selectedFoodItem.service;
     } else {
       const initialCalories =
         selectedFoodItem.calories * (selectedFoodItem.service || 1);
+      const initialProteins =
+        selectedFoodItem.proteins * (selectedFoodItem.service || 1);
+      const initialFats = selectedFoodItem.fats * (selectedFoodItem.service || 1);
+      const initialCarbs = selectedFoodItem.carbs * (selectedFoodItem.service || 1);
       updatedSelectedFoods.push({
         ...selectedFoodItem,
         calories: initialCalories,
+        proteins: initialProteins,
+        fats: initialFats,
+        carbs: initialCarbs,
       });
     }
     setSelectedFoods(updatedSelectedFoods);
@@ -40,11 +56,28 @@ const MealCard = ({ title, onFoodSelect, updateTotalCalories }) => {
         (total, food) => total + food.calories,
         0
       );
+      const newTotalProteins = updatedSelectedFoods.reduce(
+        (total, food) => total + food.proteins,
+        0
+      );
+      const newTotalFats = updatedSelectedFoods.reduce(
+        (total, food) => total + food.fats,
+        0
+      );
+      const newTotalCarbs = updatedSelectedFoods.reduce(
+        (total, food) => total + food.carbs,
+        0
+      );
       setTotalCalories(newTotalCalories);
+      setTotalProteins(newTotalProteins);
+      setTotalFats(newTotalFats);
+      setTotalCarbs(newTotalCarbs);
       setVisible(false);
-      const result = onFoodSelect && onFoodSelect(newTotalCalories);
+      if (onFoodSelect) {
+        onFoodSelect(newTotalCalories, newTotalProteins, newTotalFats, newTotalCarbs);
+      }
       if (updateTotalCalories) {
-        updateTotalCalories(newTotalCalories); // Yeni fonksiyonu çağır
+        updateTotalCalories(newTotalCalories);
       }
     }, 0);
   };
@@ -66,11 +99,22 @@ const MealCard = ({ title, onFoodSelect, updateTotalCalories }) => {
     const foodIndex = updatedSelectedFoods.findIndex((f) => f === food);
 
     if (foodIndex !== -1) {
+      const caloriesToRemove = updatedSelectedFoods[foodIndex].calories;
+      const proteinsToRemove = updatedSelectedFoods[foodIndex].proteins;
+      const fatsToRemove = updatedSelectedFoods[foodIndex].fats;
+      const carbsToRemove = updatedSelectedFoods[foodIndex].carbs;
+
       if (updatedSelectedFoods[foodIndex].service > 1) {
         const caloriesPerService = food.calories / updatedSelectedFoods[foodIndex].service;
+        const proteinsPerService = food.proteins / updatedSelectedFoods[foodIndex].service;
+        const fatsPerService = food.fats / updatedSelectedFoods[foodIndex].service;
+        const carbsPerService = food.carbs / updatedSelectedFoods[foodIndex].service;
 
         updatedSelectedFoods[foodIndex].service -= 1;
         updatedSelectedFoods[foodIndex].calories -= caloriesPerService;
+        updatedSelectedFoods[foodIndex].proteins -= proteinsPerService;
+        updatedSelectedFoods[foodIndex].fats -= fatsPerService;
+        updatedSelectedFoods[foodIndex].carbs -= carbsPerService;
       } else {
         updatedSelectedFoods.splice(foodIndex, 1);
       }
@@ -78,10 +122,17 @@ const MealCard = ({ title, onFoodSelect, updateTotalCalories }) => {
       setSelectedFoods(updatedSelectedFoods);
 
       const newTotalCalories = updatedSelectedFoods.reduce((total, f) => total + f.calories, 0);
-      setTotalCalories(newTotalCalories);
+      const newTotalProteins = updatedSelectedFoods.reduce((total, f) => total + f.proteins, 0);
+      const newTotalFats = updatedSelectedFoods.reduce((total, f) => total + f.fats, 0);
+      const newTotalCarbs = updatedSelectedFoods.reduce((total, f) => total + f.carbs, 0);
 
-      if (onFoodSelect) {
-        onFoodSelect(newTotalCalories);
+      setTotalCalories(newTotalCalories);
+      setTotalProteins(newTotalProteins);
+      setTotalFats(newTotalFats);
+      setTotalCarbs(newTotalCarbs);
+
+      if (onFoodRemove) {
+        onFoodRemove(caloriesToRemove, proteinsToRemove, fatsToRemove, carbsToRemove); // Pass true for isRemoving
       }
 
       if (updateTotalCalories) {
@@ -91,7 +142,6 @@ const MealCard = ({ title, onFoodSelect, updateTotalCalories }) => {
 
     setFoodToRemove(null);
   };
-  
 
   return (
     <Card
@@ -111,16 +161,19 @@ const MealCard = ({ title, onFoodSelect, updateTotalCalories }) => {
               name={food.name}
               icon={food.icon}
               calories={food.calories}
+              proteins={food.proteins}
+              fats={food.fats}
+              carbs={food.carbs}
               service={food.service}
             />
           </TouchableOpacity>
         </View>
       ))}
-      <Text style={{ fontSize: 14, fontWeight: "bold",marginVertical:10 }}>
+      <Text style={{ fontSize: 14, fontWeight: "bold", marginVertical: 10 }}>
         Total Calories: {totalCalories}
       </Text>
       <Button
-        buttonStyle={{ backgroundColor: "#0000FF", padding: 15,borderRadius:20,marginLeft:"auto" }}
+        buttonStyle={{ backgroundColor: "#0000FF", padding: 15, borderRadius: 20, marginLeft: "auto" }}
         title="Add Food"
         onPress={toggleOverlay}
       />

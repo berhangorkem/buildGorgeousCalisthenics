@@ -29,6 +29,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/almond.png"),
       service: 1,
       calories: 579,
+      fats: 50,
+      proteins: 21,
+      carbs: 22,
     },
     {
       id: 2,
@@ -36,6 +39,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/lentils.png"),
       service: 1,
       calories: 116,
+      fats: 0.4,
+      proteins: 9,
+      carbs: 20,
     },
     {
       id: 3,
@@ -43,6 +49,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/blueberry.png"),
       service: 1,
       calories: 57,
+      fats: 0.3,
+      proteins: 0.7,
+      carbs: 14,
     },
     {
       id: 4,
@@ -50,6 +59,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/meat.png"),
       service: 1,
       calories: 250,
+      fats: 20,
+      proteins: 26,
+      carbs: 0,
     },
     {
       id: 5,
@@ -57,6 +69,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/boiled-egg.png"),
       service: 1,
       calories: 155,
+      fats: 11,
+      proteins: 13,
+      carbs: 1.1,
     },
     {
       id: 6,
@@ -64,6 +79,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/milk.png"),
       service: 1,
       calories: 42,
+      fats: 1,
+      proteins: 3.4,
+      carbs: 5,
     },
     {
       id: 7,
@@ -71,6 +89,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/cake.png"),
       service: 1,
       calories: 257,
+      fats: 10,
+      proteins: 3,
+      carbs: 38,
     },
     {
       id: 8,
@@ -78,6 +99,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/minced-meat.png"),
       service: 1,
       calories: 250,
+      fats: 20,
+      proteins: 26,
+      carbs: 0,
     },
     {
       id: 9,
@@ -85,6 +109,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/cheese.png"),
       service: 1,
       calories: 402,
+      fats: 33,
+      proteins: 25,
+      carbs: 1.3,
     },
     {
       id: 10,
@@ -92,6 +119,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/pancakes.png"),
       service: 1,
       calories: 227,
+      fats: 10,
+      proteins: 6,
+      carbs: 28,
     },
     {
       id: 11,
@@ -99,6 +129,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/chicken-breast.png"),
       service: 1,
       calories: 165,
+      fats: 3.6,
+      proteins: 31,
+      carbs: 0,
     },
     {
       id: 12,
@@ -106,6 +139,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/peanut.png"),
       service: 1,
       calories: 567,
+      fats: 49,
+      proteins: 26,
+      carbs: 16,
     },
     {
       id: 13,
@@ -113,6 +149,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/chicken-leg.png"),
       service: 1,
       calories: 215,
+      fats: 13.6,
+      proteins: 18,
+      carbs: 0,
     },
     {
       id: 14,
@@ -120,6 +159,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/pide.png"),
       service: 1,
       calories: 274,
+      fats: 10,
+      proteins: 9,
+      carbs: 38,
     },
     {
       id: 15,
@@ -127,6 +169,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/chocolate.png"),
       service: 1,
       calories: 546,
+      fats: 31,
+      proteins: 4.9,
+      carbs: 61,
     },
     {
       id: 16,
@@ -134,6 +179,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/pineapple.png"),
       service: 1,
       calories: 50,
+      fats: 0.1,
+      proteins: 0.5,
+      carbs: 13,
     },
     {
       id: 17,
@@ -141,6 +189,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/coffee.png"),
       service: 1,
       calories: 2,
+      fats: 0,
+      proteins: 0.3,
+      carbs: 0,
     },
     {
       id: 18,
@@ -148,6 +199,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/pizza.png"),
       service: 1,
       calories: 266,
+      fats: 10,
+      proteins: 11,
+      carbs: 33,
     },
     {
       id: 19,
@@ -155,6 +209,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/croissant.png"),
       service: 1,
       calories: 406,
+      fats: 21,
+      proteins: 8,
+      carbs: 45,
     },
     {
       id: 20,
@@ -162,6 +219,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/potato-chips.png"),
       service: 1,
       calories: 536,
+      fats: 34,
+      proteins: 7,
+      carbs: 50,
     },
     {
       id: 21,
@@ -169,6 +229,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/french-fries.png"),
       service: 1,
       calories: 312,
+      fats: 15,
+      proteins: 3.4,
+      carbs: 41,
     },
     {
       id: 22,
@@ -176,6 +239,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/rice.png"),
       service: 1,
       calories: 130,
+      fats: 0.3,
+      proteins: 2.7,
+      carbs: 28,
     },
     {
       id: 23,
@@ -183,6 +249,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/fried-egg.png"),
       service: 1,
       calories: 196,
+      fats: 14,
+      proteins: 13,
+      carbs: 1,
     },
     {
       id: 24,
@@ -190,6 +259,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/salad.png"),
       service: 1,
       calories: 33,
+      fats: 0.2,
+      proteins: 2,
+      carbs: 6,
     },
     {
       id: 25,
@@ -197,6 +269,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/granola.png"),
       service: 1,
       calories: 489,
+      fats: 23,
+      proteins: 14,
+      carbs: 65,
     },
     {
       id: 26,
@@ -204,6 +279,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/smoked-turkey.png"),
       service: 1,
       calories: 150,
+      fats: 5,
+      proteins: 22,
+      carbs: 2,
     },
     {
       id: 27,
@@ -211,6 +289,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/hamburger.png"),
       service: 1,
       calories: 295,
+      fats: 12,
+      proteins: 17,
+      carbs: 33,
     },
     {
       id: 28,
@@ -218,6 +299,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/spaguetti.png"),
       service: 1,
       calories: 158,
+      fats: 1,
+      proteins: 6,
+      carbs: 31,
     },
     {
       id: 29,
@@ -225,6 +309,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/honey.png"),
       service: 1,
       calories: 304,
+      fats: 0,
+      proteins: 0.3,
+      carbs: 82,
     },
     {
       id: 30,
@@ -232,6 +319,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/spinach.png"),
       service: 1,
       calories: 23,
+      fats: 0.4,
+      proteins: 2.9,
+      carbs: 3.6,
     },
     {
       id: 31,
@@ -239,6 +329,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/hot-dog.png"),
       service: 1,
       calories: 290,
+      fats: 25,
+      proteins: 10,
+      carbs: 2,
     },
     {
       id: 32,
@@ -246,6 +339,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/strawberry.png"),
       service: 1,
       calories: 32,
+      fats: 0.3,
+      proteins: 0.7,
+      carbs: 7.7,
     },
     {
       id: 33,
@@ -253,6 +349,9 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/kebab.png"),
       service: 1,
       calories: 250,
+      fats: 15,
+      proteins: 17,
+      carbs: 10,
     },
     {
       id: 34,
@@ -260,8 +359,12 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       icon: require("../../assets/foods/tea.png"),
       service: 1,
       calories: 1,
+      fats: 0,
+      proteins: 0,
+      carbs: 0,
     },
   ];
+  
   const [foodData, setFoodData] = useState(foodDataInitial);
   const [isNewFoodOverlayVisible, setIsNewFoodOverlayVisible] = useState(false);
 
