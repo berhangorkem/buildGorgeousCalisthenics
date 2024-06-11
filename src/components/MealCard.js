@@ -25,22 +25,22 @@ const MealCard = ({ title, onFoodSelect, updateTotalCalories, onFoodRemove }) =>
 
     if (existingFoodIndex !== -1) {
       updatedSelectedFoods[existingFoodIndex].service +=
-        selectedFoodItem.service;
+        selectedFoodItem.service || 1;
       updatedSelectedFoods[existingFoodIndex].calories +=
-        selectedFoodItem.calories * selectedFoodItem.service;
+        selectedFoodItem.calories * (selectedFoodItem.service || 1);
       updatedSelectedFoods[existingFoodIndex].proteins +=
-        selectedFoodItem.proteins * selectedFoodItem.service;
+        (selectedFoodItem.proteins || 0) * (selectedFoodItem.service || 1);
       updatedSelectedFoods[existingFoodIndex].fats +=
-        selectedFoodItem.fats * selectedFoodItem.service;
+        (selectedFoodItem.fats || 0) * (selectedFoodItem.service || 1);
       updatedSelectedFoods[existingFoodIndex].carbs +=
-        selectedFoodItem.carbs * selectedFoodItem.service;
+        (selectedFoodItem.carbs || 0) * (selectedFoodItem.service || 1);
     } else {
       const initialCalories =
         selectedFoodItem.calories * (selectedFoodItem.service || 1);
       const initialProteins =
-        selectedFoodItem.proteins * (selectedFoodItem.service || 1);
-      const initialFats = selectedFoodItem.fats * (selectedFoodItem.service || 1);
-      const initialCarbs = selectedFoodItem.carbs * (selectedFoodItem.service || 1);
+        (selectedFoodItem.proteins || 0) * (selectedFoodItem.service || 1);
+      const initialFats = (selectedFoodItem.fats || 0) * (selectedFoodItem.service || 1);
+      const initialCarbs = (selectedFoodItem.carbs || 0) * (selectedFoodItem.service || 1);
       updatedSelectedFoods.push({
         ...selectedFoodItem,
         calories: initialCalories,
@@ -106,9 +106,9 @@ const MealCard = ({ title, onFoodSelect, updateTotalCalories, onFoodRemove }) =>
 
       if (updatedSelectedFoods[foodIndex].service > 1) {
         const caloriesPerService = food.calories / updatedSelectedFoods[foodIndex].service;
-        const proteinsPerService = food.proteins / updatedSelectedFoods[foodIndex].service;
-        const fatsPerService = food.fats / updatedSelectedFoods[foodIndex].service;
-        const carbsPerService = food.carbs / updatedSelectedFoods[foodIndex].service;
+        const proteinsPerService = (food.proteins || 0) / updatedSelectedFoods[foodIndex].service;
+        const fatsPerService = (food.fats || 0) / updatedSelectedFoods[foodIndex].service;
+        const carbsPerService = (food.carbs || 0) / updatedSelectedFoods[foodIndex].service;
 
         updatedSelectedFoods[foodIndex].service -= 1;
         updatedSelectedFoods[foodIndex].calories -= caloriesPerService;
@@ -161,9 +161,9 @@ const MealCard = ({ title, onFoodSelect, updateTotalCalories, onFoodRemove }) =>
               name={food.name}
               icon={food.icon}
               calories={food.calories}
-              proteins={food.proteins}
-              fats={food.fats}
-              carbs={food.carbs}
+              proteins={food.proteins || 0}
+              fats={food.fats || 0}
+              carbs={food.carbs || 0}
               service={food.service}
             />
           </TouchableOpacity>
