@@ -18,7 +18,7 @@ const SigninScreen = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const useMockData = true; // Set this to false if you want to use API instead of mock data
+  const useMockData = false; // Set this to false if you want to use API instead of mock data
   const mockUserData = {
     username: "a",
     password: "a",
@@ -37,22 +37,42 @@ const SigninScreen = ({ navigation }) => {
       }
     } else {
       // Use API for login
-      try {
-        const response = await axios.post("YOUR_API_ENDPOINT", {
-          username,
-          password,
-        });
-        // Handle successful response
-        console.log(response.data);
-        navigation.navigate("mainFlow");
-      } catch (error) {
-        // Handle error response
-        console.error(error);
-        Alert.alert(
-          "Login Failed",
-          "Please check your credentials and try again."
-        );
-      }
+      // try {
+        
+      //   const response = await axios.post("YOUR_API_ENDPOINT", {
+      //     username,
+      //     password,
+      //   });
+      //   // Handle successful response
+      //   console.log(response.data);
+      //   navigation.navigate("mainFlow");
+      // } catch (error) {
+      //   // Handle error response
+      //   console.error(error);
+      //   Alert.alert(
+      //     "Login Failed",
+      //     "Please check your credentials and try again."
+      //   );
+      // }
+      // console.log("TEST 1");
+      const response = await axios.post("https://xl10mjw5-3000.euw.devtunnels.ms/api/v1/auth/login", {username,password}).then(res =>{
+      // console.log("TEST 2");
+        console.log(res.data);
+        console.log(res.status);
+        navigation.navigate("mainFlow")
+      }).catch(error => {
+      // console.log("TEST 3")
+        console.error(
+              "API request failed. Logging data to console instead.",
+              error
+            );
+            console.log(error.response.data);
+            console.log(error.response.status);
+            Alert.alert(
+              "Signup Incomplete",
+              "Unable to connect to the server. Check your network connection."
+            );
+      });
     }
   };
 

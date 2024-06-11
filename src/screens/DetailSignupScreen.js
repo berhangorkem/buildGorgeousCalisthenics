@@ -20,40 +20,55 @@ const DetailSignupScreen = ({ navigation }) => {
   const img = require("../../assets/banners/loginFlow-banner.jpg");
   const { userData } = useContext(UserContext);
   const [age, setAge] = useState("");
-  const [size, setSize] = useState("");
+  const [height, setheight] = useState("");
   const [weight, setWeight] = useState("");
   const [gender, setGender] = useState("");
   const [activityLevel, setActivityLevel] = useState("");
 
   const handleCompleteSignup = async () => {
-    const finalData = { ...userData, age, size, weight, gender, activityLevel };
-
-    if (useApi) {
-      try {
-        const response = await axios.post("YOUR_API_ENDPOINT", finalData);
-        console.log("API Response:", response.data);
-        navigation.navigate("Signin");
-      } catch (error) {
-        console.error(
-          "API request failed. Logging data to console instead.",
-          error
-        );
-        Alert.alert(
-          "Signup Incomplete",
-          "Unable to connect to the server. Check your network connection."
-        );
-        console.log("Final Signup Data (API Unavailable):", finalData);
-      }
-    } else {
-      // If useApi is false, log the data to the console
-      console.log("API is disabled. Final Signup Data:", finalData);
-      navigation.navigate("Signin");
-    }
+    // if (useApi) {
+    //   try {
+    //     const response = await axios.post("YOUR_API_ENDPOINT", finalData);
+    //     console.log("API Response:", response.data);
+    //     navigation.navigate("Signin");
+    //   } catch (error) {
+    //     console.error(
+    //       "API request failed. Logging data to console instead.",
+    //       error
+    //     );
+    //     Alert.alert(
+    //       "Signup Incomplete",
+    //       "Unable to connect to the server. Check your network connection."
+    //     );
+    //     console.log("Final Signup Data (API Unavailable):", finalData);
+    //   }
+    // } else {
+    //   // If useApi is false, log the data to the console
+    //   console.log("API is disabled. Final Signup Data:", finalData);
+    //   navigation.navigate("Signin");
+    // }
+    const finalData = { ...userData, age, height, weight, gender, activityLevel };
+    console.log(finalData);
+    const response = await axios.post("https://xl10mjw5-3000.euw.devtunnels.ms/api/v1/auth/register", finalData).then(res =>{
+      console.log(res);
+      navigation.navigate("Signin")
+    }).catch(error => {
+      console.error(
+            "API request failed. Logging data to console instead.",
+            error
+          );
+          console.log(error.response.data);
+          console.log(error.response.status);
+          Alert.alert(
+            "Signup Incomplete",
+            "Unable to connect to the server. Check your network connection."
+          );
+    });
   };
 
   return (
     <ScrollView>
-      <ImageBackground source={img} resizeMode="cover" style={{ flex: 1 }}>
+      <ImageBackground source={img} reheightMode="cover" style={{ flex: 1 }}>
         <View style={styles.overlay} />
         <View style={styles.container}>
           <Spacer>
@@ -71,9 +86,9 @@ const DetailSignupScreen = ({ navigation }) => {
               type="numeric"
             />
             <InputContainer
-              label="Size"
-              value={size}
-              onChangeText={setSize}
+              label="height"
+              value={height}
+              onChangeText={setheight}
               type="numeric"
             />
             <InputContainer
