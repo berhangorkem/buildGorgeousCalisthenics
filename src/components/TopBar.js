@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import LogoutIcon from "./LogoutIcon";  // Ensure you have this component
+import LogoutIcon from "./LogoutIcon"; 
 
 const TopBar = ({ text }) => {
   return (
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   placeholder: {
-    width: 30, // Adjust width as needed for layout
+    width: 30, 
   },
 });
 

@@ -25,33 +25,33 @@ const PickerContainer = ({ label, options,selectedValue,onValueChange }) => {
 const styles = StyleSheet.create({
   inputContainer: {
     marginBottom: 10,
-    alignItems: 'center', // Center align the picker container
+    alignItems: 'center', 
   },
   label: {
     fontSize: 12,
     fontWeight: "bold",
     marginBottom: 5,
     alignSelf: "flex-start",
-    color: "#CCCCCC", // Grey color
+    color: "#CCCCCC", 
     marginLeft: 10
   },
   pickerContainer: {
-    width: '93%', // Reduced width to 93% of the container
-    borderColor: "#CCCCCC", // Border color
+    width: '93%', 
+    borderColor: "#CCCCCC",
     borderWidth: 1,
     borderRadius: 15,
-    backgroundColor: "transparent", // Transparent background
+    backgroundColor: "transparent", 
   },
   picker: {
     borderRadius: 15,
-    borderWidth: 0, // No border for button group container
-    backgroundColor: "transparent", // Transparent background for button group
+    borderWidth: 0, 
+    backgroundColor: "transparent", 
   },
   selectedButton: {
-    backgroundColor: "#BCCCCC", // Grey background for selected button
+    backgroundColor: "#BCCCCC", 
   },
   pickerText: {
-    color: "#CCCCCC", // Grey text color
+    color: "#CCCCCC", 
   },
 });
 

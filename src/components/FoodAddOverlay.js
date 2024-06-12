@@ -135,11 +135,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     textAlign: "center",
   },
-  inputWithBorder: {  // Style for inputs with borders
+  inputWithBorder: { 
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 5,
-    paddingHorizontal: 10, // Add horizontal padding
+    paddingHorizontal: 10, 
   },
   addButtonText: {
     color: "white",

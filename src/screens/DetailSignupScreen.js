@@ -13,7 +13,6 @@ import PickerContainer from "../components/PickerContainer";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
 
-// Define the API flag outside the component
 const useApi = false; // Set this to true if you want to use the API
 
 const DetailSignupScreen = ({ navigation }) => {

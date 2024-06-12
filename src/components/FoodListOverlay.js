@@ -9,7 +9,7 @@ import {
   Image,
 } from "react-native";
 import { Overlay } from "react-native-elements";
-import FoodAddOverlay from "./FoodAddOverlay"; // assuming FoodAddOverlay is in a separate file
+import FoodAddOverlay from "./FoodAddOverlay"; 
 
 const OverlayFoodCard = ({ name, icon, calories }) => (
   <View style={styles.foodCard}>
@@ -364,7 +364,7 @@ const FoodListOverlay = ({ isVisible, toggleOverlay, onFoodSelect }) => {
       carbs: 0,
     },
   ];
-  
+
   const [foodData, setFoodData] = useState(foodDataInitial);
   const [isNewFoodOverlayVisible, setIsNewFoodOverlayVisible] = useState(false);
 
@@ -428,7 +428,7 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: "center",
     maxHeight: 400,
-    width: "90%", // Set overlay width to 90% of the screen width
+    width: "90%", 
   },
   overlayTitle: {
     fontSize: 20,
@@ -437,7 +437,7 @@ const styles = StyleSheet.create({
   },
   foodList: {
     width: "100%",
-    maxHeight: "100%", // Ensure the food list does not take too much height
+    maxHeight: "100%",
   },
   foodItem: {
     marginBottom: 10,

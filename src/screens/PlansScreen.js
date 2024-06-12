@@ -10,7 +10,6 @@ import {
   ScrollView,
 } from "react-native";
 
-// Workout Plans Data (Example)
 
 
 const workoutPlans = [
@@ -369,7 +368,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   flatListContent: {
-    paddingVertical: 20, // Top and bottom padding for the entire list
+    paddingVertical: 20, 
   },
   categoryContainer: {
     marginBottom: 20,
@@ -387,7 +386,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   planCard: {
-    width: "48%", // Two cards per row with some spacing
+    width: "48%", 
     backgroundColor: "#fff",
     borderRadius: 10,
     alignItems: "center",
@@ -420,29 +419,29 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
     padding: 20,
-    alignItems: "flex-start", // Align content to the left
+    alignItems: "flex-start", 
   },
   modalTitle: {
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 10,
-    alignSelf: "center", // Center the title
+    alignSelf: "center",
   },
   exerciseItem: {
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 10,
-    marginLeft: 20, // Shift items towards the right
+    marginLeft: 20,
   },
   exerciseIcon: {
     width: 30,
     height: 30,
-    flexShrink: 0, // Prevent shrinking of the image
-    alignSelf: "flex-start", // Align image to the left
+    flexShrink: 0,
+    alignSelf: "flex-start", 
   },
   exerciseText: {
     fontSize: 16,
-    marginLeft: 10, // Start text a consistent distance from the image
+    marginLeft: 10, 
   },
   closeButton: {
     backgroundColor: "#0000FF",

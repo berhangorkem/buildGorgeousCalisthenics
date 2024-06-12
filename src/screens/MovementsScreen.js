@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { Card,Button  } from "react-native-elements";
 
-// Sample data for movements with descriptions
 const movementsData = [
   {
     id: 1,
@@ -458,7 +457,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f5f5",
   },
   contentContainer: {
-    paddingBottom: 30, // Space at the bottom of the screen
+    paddingBottom: 30,
   },
   areaHeader: {
     backgroundColor: "#ddd",

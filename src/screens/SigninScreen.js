@@ -11,6 +11,7 @@ import Spacer from "../components/Spacer";
 import NavLink from "../components/NavLink";
 import InputContainer from "../components/InputContainer";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SigninScreen = ({ navigation }) => {
   const img = require("../../assets/banners/loginFlow-banner.jpg");
@@ -22,12 +23,15 @@ const SigninScreen = ({ navigation }) => {
   const mockUserData = {
     username: "a",
     password: "a",
-  }
+  };
 
   const handleSignIn = async () => {
     if (useMockData) {
       // Use mock data for login
-      if (username === mockUserData.username && password === mockUserData.password) {
+      if (
+        username === mockUserData.username &&
+        password === mockUserData.password
+      ) {
         navigation.navigate("mainFlow");
       } else {
         Alert.alert(
@@ -36,43 +40,42 @@ const SigninScreen = ({ navigation }) => {
         );
       }
     } else {
-      // Use API for login
-      // try {
-        
-      //   const response = await axios.post("YOUR_API_ENDPOINT", {
-      //     username,
-      //     password,
-      //   });
-      //   // Handle successful response
-      //   console.log(response.data);
-      //   navigation.navigate("mainFlow");
-      // } catch (error) {
-      //   // Handle error response
-      //   console.error(error);
-      //   Alert.alert(
-      //     "Login Failed",
-      //     "Please check your credentials and try again."
-      //   );
-      // }
       // console.log("TEST 1");
-      const response = await axios.post("https://xl10mjw5-3000.euw.devtunnels.ms/api/v1/auth/login", {username,password}).then(res =>{
-      // console.log("TEST 2");
-        console.log(res.data);
-        console.log(res.status);
-        navigation.navigate("mainFlow")
-      }).catch(error => {
-      // console.log("TEST 3")
-        console.error(
-              "API request failed. Logging data to console instead.",
-              error
-            );
+      const response = await axios
+        .post("https://xl10mjw5-3000.euw.devtunnels.ms/api/v1/auth/login", {
+          username,
+          password,
+        })
+        .then(async (res) => {
+          console.log(res.data);
+          console.log(res.status);
+
+          const userId = res.data.user.id;
+          // Store the userId in AsyncStorage
+          try {
+            await AsyncStorage.setItem("userId", userId);
+            console.log("User ID saved successfully:", userId);
+          } catch (e) {
+            console.error("Failed to save user ID to AsyncStorage", e);
+          }
+
+          navigation.navigate("mainFlow");
+        })
+        .catch((error) => {
+          console.error(
+            "API request failed. Logging data to console instead.",
+            error
+          );
+          if (error.response) {
             console.log(error.response.data);
             console.log(error.response.status);
-            Alert.alert(
-              "Signup Incomplete",
-              "Unable to connect to the server. Check your network connection."
-            );
-      });
+          }
+
+          Alert.alert(
+            "Signup Incomplete",
+            "Unable to connect to the server. Check your network connection."
+          );
+        });
     }
   };
 

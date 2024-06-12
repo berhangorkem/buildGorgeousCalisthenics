@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, TouchableOpacity, Alert } from "react-native";
 import { Card, Text, Button } from "react-native-elements";
-import FoodCard from "./FoodCard"; // Replace with your FoodCard component path
-import FoodListOverlay from "./FoodListOverlay"; // Replace with your FoodListOverlay component path
+import FoodCard from "./FoodCard"; 
+import FoodListOverlay from "./FoodListOverlay"; 
 
 const MealCard = ({ title, onFoodSelect, updateTotalCalories, onFoodRemove }) => {
   const [isVisible, setVisible] = useState(false);
@@ -132,7 +132,7 @@ const MealCard = ({ title, onFoodSelect, updateTotalCalories, onFoodRemove }) =>
       setTotalCarbs(newTotalCarbs);
 
       if (onFoodRemove) {
-        onFoodRemove(caloriesToRemove, proteinsToRemove, fatsToRemove, carbsToRemove); // Pass true for isRemoving
+        onFoodRemove(caloriesToRemove, proteinsToRemove, fatsToRemove, carbsToRemove);
       }
 
       if (updateTotalCalories) {

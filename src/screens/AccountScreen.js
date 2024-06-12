@@ -4,30 +4,64 @@ import { Text, Card } from "react-native-elements";
 import TopBar from "../components/TopBar";
 import { BarChart, PieChart } from "react-native-chart-kit";
 import { UserContext } from "../context/UserContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from 'axios';
 
 const AccountScreen = () => {
   const { saveUserBMR, totalProteins, totalFats, totalCarbs } =
     useContext(UserContext);
 
-  const userInfo = [
-    { label: "Username", value: "berhangorkem" },
-    { label: "E-Mail", value: "berhangorkem@gmail.com" },
-    { label: "Age", value: "21" },
-    { label: "Size", value: "180" },
-    { label: "Weight", value: "95" },
-    { label: "Gender", value: "Male" },
-    { label: "Activity Level", value: "Medium" },
-  ];
+  const [userInfo, setUserInfo] = useState({});
+  const [dailyCalories, setDailyCalories] = useState([]);
+  const [userId, setUserId] = useState("");
 
-  const dailyCalories = [
-    { label: "Mon", value: 2300 },
-    { label: "Tue", value: 3100 },
-    { label: "Wed", value: 4400 },
-    { label: "Thu", value: 2900 },
-    { label: "Fri", value: 2000 },
-    { label: "Sat", value: 1919 },
-    { label: "Sun", value: 3453 },
-  ];
+  useEffect(() => {
+    const fetchUserId = async () => {
+      try {
+        const id = await AsyncStorage.getItem("userId");
+        setUserId(id);
+      } catch (error) {
+        console.error("Error fetching user ID:", error);
+      }
+    };
+    fetchUserId();
+  }, []);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      if (userId) {
+        try {
+          const response = await axios.get(
+            `https://xl10mjw5-3000.euw.devtunnels.ms/api/v1/users/${userId}`
+          );
+          if (response.data && response.data.data) {
+            setUserInfo(response.data.data);
+          }
+        } catch (error) {
+          console.error("Error fetching user info:", error);
+        }
+      }
+    };
+    fetchUserInfo();
+  }, [userId]);
+
+  useEffect(() => {
+    const fetchDailyCalories = async () => {
+      if (userId) {
+        try {
+          const response = await axios.get(
+            `https://xl10mjw5-3000.euw.devtunnels.ms/api/v1/users/daily/${userId}`
+          );
+          if (response.data && response.data.data) {
+            setDailyCalories(response.data.data);
+          }
+        } catch (error) {
+          console.error("Error fetching daily calories:", error);
+        }
+      }
+    };
+    fetchDailyCalories();
+  }, [userId]);
 
   const chartConfig = {
     backgroundGradientFrom: "#ffffff",
@@ -74,18 +108,15 @@ const AccountScreen = () => {
 
   const screenWidth = Dimensions.get("window").width;
   const chartHeight = 220;
-  const maxValue = Math.max(...dailyCalories.map((item) => item.value));
-  const userWeight = parseFloat(
-    userInfo.find((item) => item.label === "Weight").value
-  );
-  const userHeight = parseFloat(
-    userInfo.find((item) => item.label === "Size").value
-  );
-  const userAge = parseInt(userInfo.find((item) => item.label === "Age").value);
-  const userGender = userInfo.find((item) => item.label === "Gender").value;
-  const userActivityLevel = userInfo.find(
-    (item) => item.label === "Activity Level"
-  ).value;
+  const maxValue =
+    dailyCalories.length > 0
+      ? Math.max(...dailyCalories.map((item) => item.value))
+      : 0;
+  const userWeight = userInfo.weight || 0;
+  const userHeight = userInfo.height || 0;
+  const userAge = userInfo.age || 0;
+  const userGender = userInfo.gender || "Male";
+  const userActivityLevel = userInfo.activityLevel || "Stable";
   const userBMR = calculateBMR(
     userWeight,
     userHeight,
@@ -98,7 +129,8 @@ const AccountScreen = () => {
     saveUserBMR(userBMR);
   }, [userBMR]);
 
-  const orangeLinePosition = chartHeight * (1 - userBMR / maxValue);
+  const orangeLinePosition =
+    maxValue > 0 ? chartHeight * (1 - userBMR / maxValue) : chartHeight;
 
   const totalMacros = totalProteins + totalFats + totalCarbs;
 
@@ -140,12 +172,43 @@ const AccountScreen = () => {
             Personal Information
           </Card.Title>
           <Card.Divider />
-          {userInfo.map((item) => (
-            <View style={styles.infoRow} key={item.label}>
-              <Text style={styles.infoLabel}>{item.label}: </Text>
-              <Text>{item.value}</Text>
-            </View>
-          ))}
+          {userInfo && (
+            <>
+              <View style={styles.infoRow}>
+                <Text style={styles.infoLabel}>Username: </Text>
+                <Text>{userInfo.username}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.infoLabel}>E-Mail: </Text>
+                <Text>{userInfo.email}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.infoLabel}>Phone Number: </Text>
+                <Text>{userInfo.phoneNumber}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.infoLabel}>Age: </Text>
+                <Text>{userInfo.age}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.infoLabel}>Height: </Text>
+                <Text>{userInfo.height}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.infoLabel}>Weight: </Text>
+                <Text>{userInfo.weight}</Text>
+              </View>
+
+              <View style={styles.infoRow}>
+                <Text style={styles.infoLabel}>Gender: </Text>
+                <Text>{userInfo.gender}</Text>
+              </View>
+              <View style={styles.infoRow}>
+                <Text style={styles.infoLabel}>Activity Level: </Text>
+                <Text>{userInfo.activityLevel}</Text>
+              </View>
+            </>
+          )}
         </Card>
 
         <Card containerStyle={styles.card}>
@@ -178,7 +241,7 @@ const AccountScreen = () => {
         <Card containerStyle={styles.card}>
           <Card.Title style={styles.infoBoxTitle}>Daily Macros</Card.Title>
           <Card.Divider />
-          <View style={styles.pieChartContainer}> 
+          <View style={styles.pieChartContainer}>
             <PieChart
               data={totalMacros === 0 ? pieChartDataGray : pieChartData}
               width={screenWidth - 64}
@@ -190,21 +253,21 @@ const AccountScreen = () => {
               center={[10, 0]}
               absolute
             />
-            {totalMacros === 0 && ( // Gri daireyi koşullu olarak render et
-              <View style={styles.grayCircleOverlay} /> 
-            )}
+            {totalMacros === 0 && <View style={styles.grayCircleOverlay} />}
           </View>
           {totalMacros !== 0 && (
             <View style={styles.legendContainer}>
               {pieChartData.map((item, index) => (
                 <View key={index} style={styles.legendItem}>
                   <View
-                    style={[styles.legendColor, { backgroundColor: item.color }]}
+                    style={[
+                      styles.legendColor,
+                      { backgroundColor: item.color },
+                    ]}
                   />
                   <Text style={styles.legendLabel}>
                     {item.name} (
-                    {((item.population * 100) / totalMacros).toFixed(2)}
-                    %)
+                    {((item.population * 100) / totalMacros).toFixed(2)}%)
                   </Text>
                 </View>
               ))}
@@ -228,7 +291,7 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 10,
     padding: 15,
-    marginBottom:10
+    marginBottom: 10,
   },
   infoLabel: {
     fontWeight: "bold",
@@ -271,19 +334,19 @@ const styles = StyleSheet.create({
     fontSize: 11,
   },
   pieChartContainer: {
-    position: 'relative', // Pozisyonu relative yaparak üst üste yerleştirmeyi sağlarız
+    position: "relative",
   },
   grayCircleOverlay: {
-    position: 'absolute', // Pasta grafiğinin üzerine yerleştirmek için
+    position: "absolute", 
     top: 25,
     left: 20,
     right: 0,
     bottom: 0,
-    width: 180, // Dairenin boyutu
+    width: 180, 
     height: 180,
-    borderRadius: 100, // Daire yapmak için
+    borderRadius: 100,
     backgroundColor: "#D3D3D3",
-    alignSelf: 'center', // Daireyi yatayda ortalar
+    alignSelf: "center", 
   },
 });
 
